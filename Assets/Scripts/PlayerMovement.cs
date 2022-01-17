@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     CharacterController controller;
     public float speed = 3f;
     public Camera playerCamera;
+    public LayerMask enemy;
+    public Transform punchOrigin;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +21,15 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 velocity=new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
         controller.Move(velocity*Time.deltaTime*speed);
+        if(Input.GetMouseButtonDown(0)){
+            punch();
+        }
+    }
+    void punch(){
+        RaycastHit2D hit=Physics2D.Raycast(transform.position, transform.right, 1, enemy);
+        if(hit){
+            Debug.Log(hit.transform.name);
+            Destroy(hit.transform.gameObject);
+        }
     }
 }
