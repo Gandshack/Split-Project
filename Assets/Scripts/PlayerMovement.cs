@@ -21,15 +21,17 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 velocity=new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
         controller.Move(velocity*Time.deltaTime*speed);
+        punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
         if(Input.GetMouseButtonDown(0)){
             punch();
         }
     }
     void punch(){
-        RaycastHit2D hit=Physics2D.Raycast(transform.position, transform.right, 1, enemy);
+        Vector2 mousePos=Input.mousePosition;
+        RaycastHit2D hit=Physics2D.Raycast(transform.position, punchOrigin.right, 1, enemy);
         if(hit){
             Debug.Log(hit.transform.name);
-            Destroy(hit.transform.gameObject);
+            hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(20);
         }
     }
 }
