@@ -40,6 +40,6 @@ public class Enemy : MonoBehaviour
         if(_hit){
             _hit.transform.gameObject.GetComponent<PlayerMovement>().TakeDamage(10);
         }
-        return new WaitForSeconds(0.5);
+        //return new WaitForSeconds(0.5f);
     }
 }
