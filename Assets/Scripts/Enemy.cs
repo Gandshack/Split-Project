@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         if(_hit){
             player.GetComponent<PlayerMovement>().TakeDamage(10);
         }
-        Sleep(0.5f);
+        StartCoroutine(Sleep(0.5f));
     }
     IEnumerator Sleep(float time)
     {
