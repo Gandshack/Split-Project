@@ -38,8 +38,12 @@ public class Enemy : MonoBehaviour
     {
         RaycastHit2D _hit=Physics2D.Raycast(transform.position,dir.forward,1);
         if(_hit){
-            _hit.transform.gameObject.GetComponent<PlayerMovement>().TakeDamage(10);
+            player.GetComponent<PlayerMovement>().TakeDamage(10);
         }
-        //return new WaitForSeconds(0.5f);
+        Sleep(0.5f);
+    }
+    IEnumerator Sleep(float time)
+    {
+        yield return new WaitForSeconds(time);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D controller;
-    public float speed = 3f;
+    public float speed = 5f;
     public float health = 80;
     public bool isGrounded = false;
     public Transform isGroundedChecker;
@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public Camera playerCamera;
     public LayerMask enemy;
     public Transform punchOrigin;
+    float velocityY=0;
+    public float gravity=-9f;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +27,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         CheckIfGrounded();
-        Vector2 velocity=new Vector2(Input.GetAxisRaw("Horizontal"),0);
-        if(isGrounded && Input.GetAxisRaw("Vertical") < 0)
+        Vector2 velocity=new Vector2(Input.GetAxisRaw("Horizontal"),velocityY);
+        if(isGrounded && Input.GetAxisRaw("Vertical") > 0)
         {
-            Vector2 vel2 = new Vector2(0, -1000*speed);
+            Vector2 vel2 = new Vector2(0, 10000*speed);
             controller.AddForce(vel2 * Time.deltaTime);
         }
+        velocity.y = controller.velocity.y;
         controller.velocity = velocity;
+        
         punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
         if(Input.GetMouseButtonDown(0)){
             punch();
@@ -47,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Die()
     {
-        Destroy(gameObject);
+        Debug.Log("player ded");
     }
 
     void CheckIfGrounded()
