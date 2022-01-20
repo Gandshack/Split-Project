@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D controller;
-    public float speed = 3f;
+    public float speed = 5f;
     public float health = 80;
     public bool isGrounded = false;
     public Transform isGroundedChecker;
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public Camera playerCamera;
     public LayerMask enemy;
     public Transform punchOrigin;
+    public float gravity=-9f;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +59,10 @@ public class PlayerMovement : MonoBehaviour
             punch();
         }
     }
+    public bool _isSneaking()
+    {
+        return Input.GetAxisRaw("Vertical")<0;
+    }
     public void TakeDamage(float damage)
     {
         health -= damage;
@@ -68,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Die()
     {
-        Destroy(gameObject);
+        Debug.Log("player ded");
     }
 
     bool CheckIfGrounded(Transform isChecker)
