@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
         if(Mathf.Abs(player.position.x-transform.position.x)<3.5f){
             dir.LookAt(player);
         }
-        if(Mathf.Abs(player.position.x-transform.position.x)<1f){
+        if(Mathf.Abs(player.position.x-transform.position.x)<1f&&Mathf.Abs(player.position.y-transform.position.y)<1f&&Random.Range(0,3)<1*Time.deltaTime){
             hit();
         }
     }
@@ -34,16 +34,12 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    public void hit()
+    void hit()
     {
-        RaycastHit2D _hit=Physics2D.Raycast(transform.position,dir.forward,1);
+        RaycastHit2D _hit=Physics2D.Raycast(transform.position,dir.forward,0.5f);
         if(_hit){
             player.GetComponent<PlayerMovement>().TakeDamage(10);
         }
-        StartCoroutine(Sleep(0.5f));
-    }
-    IEnumerator Sleep(float time)
-    {
-        yield return new WaitForSeconds(time);
+        
     }
 }

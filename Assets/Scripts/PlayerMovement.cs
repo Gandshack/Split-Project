@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     public Camera playerCamera;
     public LayerMask enemy;
     public Transform punchOrigin;
-    float velocityY=0;
     public float gravity=-9f;
     // Start is called before the first frame update
     void Start()
@@ -27,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         CheckIfGrounded();
-        Vector2 velocity=new Vector2(Input.GetAxisRaw("Horizontal"),velocityY);
+        Vector2 velocity=new Vector2(Input.GetAxisRaw("Horizontal"),0);
         if(isGrounded && Input.GetAxisRaw("Vertical") > 0)
         {
             Vector2 vel2 = new Vector2(0, 10000*speed);
