@@ -40,6 +40,10 @@ public class PlayerMovement : MonoBehaviour
             punch();
         }
     }
+    public bool _isSneaking()
+    {
+        return Input.GetAxisRaw("Vertical")<0;
+    }
     public void TakeDamage(float damage)
     {
         health -= damage;
