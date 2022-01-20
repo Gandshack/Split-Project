@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isJumping && isGrounded && Input.GetAxisRaw("Vertical") > 0)
         {
             isJumping = true;
-            jumpDelay = 0.1f;
+            jumpDelay = 0.05f;
             Vector2 vel2 = new Vector2(0, 100*speed);
             controller.AddForce(vel2);
         }
@@ -60,6 +60,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0 &&!isRighted)
         {
             controller.AddForce(1000 * speed * velocity * Time.deltaTime);
+        }
+        if (controller.velocity.x > 0)
+        {
+            controller.AddForce(-100 * speed * velocity * Time.deltaTime);
+        }
+        if (controller.velocity.x < 0)
+        {
+            controller.AddForce(100 * speed * velocity * Time.deltaTime);
         }
         if (controller.velocity.x < -5)
         {
