@@ -247,8 +247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  dir: {fileID: 325343226}
-  player: {fileID: 932577582}
 --- !u!1 &325343225
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,20 +420,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &755966192
-Transform:
+--- !u!224 &755966192
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755966191}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -1.27, z: -0.54111403}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 932577582}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.007, y: -0.934}
+  m_SizeDelta: {x: 0.9, y: 0.25}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &932577578
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +476,7 @@ MonoBehaviour:
   health: 80
   isGrounded: 0
   isGroundedChecker: {fileID: 755966192}
+  isJumping: 0
   isLefted: 0
   isLeftedChecker: {fileID: 1269435666}
   isRighted: 0
@@ -487,6 +491,7 @@ MonoBehaviour:
     m_Bits: 8
   punchOrigin: {fileID: 2013493102}
   gravity: -1
+  jumpDelay: 0
 --- !u!212 &932577580
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -723,20 +728,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1269435666
-Transform:
+--- !u!224 &1269435666
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269435665}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.61, y: -0.37, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 932577582}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.478, y: -0.01}
+  m_SizeDelta: {x: 0.25, y: 1.9}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1494722568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,9 +1551,35 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1599229890}
+    m_ColliderPaths:
+    - - X: -100000000
+        Y: -40000000
+      - X: -100000000
+        Y: 50000000
+      - X: -110000000
+        Y: 50000000
+      - X: -110000000
+        Y: -50000000
+      - X: 110000000
+        Y: -50000000
+      - X: 110000000
+        Y: 50000000
+      - X: 100000000
+        Y: 50000000
+      - X: 100000000
+        Y: -40000000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: 10.99997, y: -5}
+      - {x: 10.99997, y: 5}
+      - {x: 10, y: 4.999971}
+      - {x: 9.99997, y: -4}
+      - {x: -10, y: -3.9999704}
+      - {x: -10.00003, y: 5}
+      - {x: -11, y: 4.999971}
+      - {x: -10.99997, y: -5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!19719996 &1599229890
@@ -1558,7 +1594,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
@@ -1599,20 +1635,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1626764597
-Transform:
+--- !u!224 &1626764597
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626764596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.62, y: -0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 932577582}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.443, y: 0.01}
+  m_SizeDelta: {x: 0.25, y: 1.9}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2013493101
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,18 +7,23 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D controller;
     public float speed = 5f;
     public float health = 80;
+
     public bool isGrounded = false;
-    public Transform isGroundedChecker;
+    public RectTransform isGroundedChecker;
+    public bool isJumping = false;
+
     public bool isLefted = false;
-    public Transform isLeftedChecker;
+    public RectTransform isLeftedChecker;
     public bool isRighted = false;
-    public Transform isRightedChecker;
+    public RectTransform isRightedChecker;
     public float checkGroundRadius;
     public LayerMask groundLayer;
     public Camera playerCamera;
     public LayerMask enemy;
     public Transform punchOrigin;
     public float gravity=-9f;
+
+    public float jumpDelay = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,14 +34,24 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = CheckIfGrounded(isGroundedChecker);
-        isLefted = CheckIfGrounded(isLeftedChecker);
-        isRighted = CheckIfGrounded(isRightedChecker);
+        isGrounded = CheckIfSided(isGroundedChecker);
+        isLefted = CheckIfSided(isLeftedChecker);
+        isRighted = CheckIfSided(isRightedChecker);
         Vector2 velocity = new Vector2(1,0);
-        if(isGrounded && Input.GetAxisRaw("Vertical") > 0)
+        if (isJumping)
         {
-            Vector2 vel2 = new Vector2(0, 1000*speed);
-            controller.AddForce(vel2 * Time.deltaTime);
+            jumpDelay -= Time.deltaTime;
+        }
+        if (jumpDelay < 0)
+        {
+            isJumping = false;
+        }
+        if (!isJumping && isGrounded && Input.GetAxisRaw("Vertical") > 0)
+        {
+            isJumping = true;
+            jumpDelay = 0.1f;
+            Vector2 vel2 = new Vector2(0, 100*speed);
+            controller.AddForce(vel2);
         }
         if (Input.GetAxisRaw("Horizontal") < 0 &&!isLefted)
         {
@@ -76,9 +91,11 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("player ded");
     }
 
-    bool CheckIfGrounded(Transform isChecker)
+    bool CheckIfSided(RectTransform isChecker)
     {
-        Collider2D collider = Physics2D.OverlapCircle(isChecker.position, checkGroundRadius, groundLayer);
+        Rect r = isChecker.rect;
+        //Debug.DrawRay(isChecker.position, r.size, Color.black);
+        Collider2D collider = Physics2D.OverlapBox(isChecker.position, r.size, 0, groundLayer);
         if (collider != null)
         {
             return true;
