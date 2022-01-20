@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
     public float health = 80;
     public bool isGrounded = false;
     public Transform isGroundedChecker;
+    public bool isLefted = false;
+    public Transform isLeftedChecker;
+    public bool isRighted = false;
+    public Transform isRightedChecker;
     public float checkGroundRadius;
     public LayerMask groundLayer;
     public Camera playerCamera;
@@ -24,14 +28,31 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckIfGrounded();
-        Vector2 velocity=new Vector2(Input.GetAxisRaw("Horizontal"),0);
-        if(isGrounded && Input.GetAxisRaw("Vertical") < 0)
+        isGrounded = CheckIfGrounded(isGroundedChecker);
+        isLefted = CheckIfGrounded(isLeftedChecker);
+        isRighted = CheckIfGrounded(isRightedChecker);
+        Vector2 velocity = new Vector2(1,0);
+        if(isGrounded && Input.GetAxisRaw("Vertical") > 0)
         {
-            Vector2 vel2 = new Vector2(0, -1000*speed);
+            Vector2 vel2 = new Vector2(0, 1000*speed);
             controller.AddForce(vel2 * Time.deltaTime);
         }
-        controller.velocity = velocity;
+        if (Input.GetAxisRaw("Horizontal") < 0 &&!isLefted)
+        {
+            controller.AddForce(-1000 * speed * velocity * Time.deltaTime);
+        }
+        if (Input.GetAxisRaw("Horizontal") > 0 &&!isRighted)
+        {
+            controller.AddForce(1000 * speed * velocity * Time.deltaTime);
+        }
+        if (controller.velocity.x < -5)
+        {
+            controller.velocity = new Vector2(-5, controller.velocity.y);
+        }
+        else if (controller.velocity.x > 5)
+        {
+            controller.velocity = new Vector2(5, controller.velocity.y);
+        }
         punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
         if(Input.GetMouseButtonDown(0)){
             punch();
@@ -50,16 +71,16 @@ public class PlayerMovement : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void CheckIfGrounded()
+    bool CheckIfGrounded(Transform isChecker)
     {
-        Collider2D collider = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer);
+        Collider2D collider = Physics2D.OverlapCircle(isChecker.position, checkGroundRadius, groundLayer);
         if (collider != null)
         {
-            isGrounded = true;
+            return true;
         }
         else
         {
-            isGrounded = false;
+            return false;
         }
     }
 
