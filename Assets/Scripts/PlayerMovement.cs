@@ -11,27 +11,31 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9f;
     public float jumpSpeed = 300;
     public float jumpLeeway = 0.1f;
+    public float maxSpeed = 5f;
 
-    Rigidbody2D playerBody;
+    public Rigidbody2D playerBody;
 
     // Touching detection
-    [SerializeField] bool isGrounded = false;
-    [SerializeField] RectTransform isGroundedChecker;
-    [SerializeField] bool isLefted = false;
-    [SerializeField] RectTransform isLeftedChecker;
-    [SerializeField] bool isRighted = false;
-    [SerializeField] RectTransform isRightedChecker;
-    [SerializeField] LayerMask groundLayer;
+    public bool isGrounded = false;
+    public RectTransform isGroundedChecker;
+    public bool isLefted = false;
+    public RectTransform isLeftedChecker;
+    public bool isRighted = false;
+    public RectTransform isRightedChecker;
+    public LayerMask groundLayer;
 
-    [SerializeField] Camera playerCamera;
-    [SerializeField] LayerMask enemy;
-    [SerializeField] Transform punchOrigin;
+    public Camera playerCamera;
+    public LayerMask enemy;
+    public Transform punchOrigin;
 
-    [SerializeField] float jumpDelay = 0;
+    public float jumpDelay = 0;
 
-    [SerializeField] bool isJumping = false;
-    [SerializeField] float leewayLeft = 0;
+    public bool isJumping = false;
+    public float leewayLeft = 0;
 
+    public PlayerMovement player;
+    public bool WeaponOut = true;
+    public float coolDown=0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        coolDown-=Time.deltaTime*2f;
         // Determine whether the player is touching something
         isGrounded = CheckIfSided(isGroundedChecker);
         isLefted = CheckIfSided(isLeftedChecker);
@@ -58,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Can jump a little bit too early and still succeed
-        if (Input.GetAxisRaw("Vertical") > 0)
+        if ((Input.GetAxisRaw("Vertical") > 0) ^ Input.GetKey(KeyCode.Space))
         {
             leewayLeft = jumpLeeway;
         }
@@ -96,24 +101,42 @@ public class PlayerMovement : MonoBehaviour
             playerBody.AddForce(100 * velocity);
         }
         // Max speed
-        if (playerBody.velocity.x < -5)
+        if (playerBody.velocity.x < -maxSpeed)
         {
-            playerBody.velocity = new Vector2(-5, playerBody.velocity.y);
+            playerBody.velocity = new Vector2(-maxSpeed, playerBody.velocity.y);
         }
-        else if (playerBody.velocity.x > 5)
+        else if (playerBody.velocity.x > maxSpeed)
         {
-            playerBody.velocity = new Vector2(5, playerBody.velocity.y);
+            playerBody.velocity = new Vector2(maxSpeed, playerBody.velocity.y);
         }
         // Punching
         punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
-        if(Input.GetMouseButtonDown(0)){
+        if(Input.GetMouseButtonDown(0)&&coolDown<=0){
             punch();
+            coolDown=1f;
         }
+        if(Input.GetKeyDown(KeyCode.E)){
+            WeaponOut=!WeaponOut;
+        }
+        // Crouching
+        if (player._isSneaking() == true)
+        {
+            speed = 1f;
+            maxSpeed = 2f;
+        }
+        else
+        {
+            speed = 3f;
+            maxSpeed = 5f;
+        }
+
     }
     public bool _isSneaking()
     {
         return Input.GetAxisRaw("Vertical")<0;
     }
+
+
     public void TakeDamage(float damage)
     {
         health -= damage;
