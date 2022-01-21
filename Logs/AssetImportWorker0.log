@@ -3296,3 +3296,4 @@ Received Import Request.
 Start importing Assets/Scenes/GravScene.unity using Guid(6f7f8cbb80a8dce459c83c74a73a03fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b061b2fb7d3f0b5e8aaf650ea403f026') in 0.050325 seconds 
   Import took 0.059048 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
