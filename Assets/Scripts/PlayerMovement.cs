@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9f;
     public float jumpSpeed = 300;
     public float jumpLeeway = 0.1f;
+    public float maxSpeed = 5f;
 
     Rigidbody2D playerBody;
 
@@ -99,13 +100,13 @@ public class PlayerMovement : MonoBehaviour
             playerBody.AddForce(100 * velocity);
         }
         // Max speed
-        if (playerBody.velocity.x < -5)
+        if (playerBody.velocity.x < -maxSpeed)
         {
-            playerBody.velocity = new Vector2(-5, playerBody.velocity.y);
+            playerBody.velocity = new Vector2(-maxSpeed, playerBody.velocity.y);
         }
-        else if (playerBody.velocity.x > 5)
+        else if (playerBody.velocity.x > maxSpeed)
         {
-            playerBody.velocity = new Vector2(5, playerBody.velocity.y);
+            playerBody.velocity = new Vector2(maxSpeed, playerBody.velocity.y);
         }
         // Punching
         punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
@@ -116,12 +117,12 @@ public class PlayerMovement : MonoBehaviour
         if (player._isSneaking() == true)
         {
             speed = 1f;
-            playerBody.drag = 5f;
+            maxSpeed = 2f;
         }
         else
         {
             speed = 3f;
-            playerBody.drag = 0f;
+            maxSpeed = 5f;
         }
 
     }
