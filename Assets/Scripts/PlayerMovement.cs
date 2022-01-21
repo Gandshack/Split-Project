@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool isJumping = false;
     [SerializeField] float leewayLeft = 0;
 
+    public PlayerMovement player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,11 +111,23 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
             punch();
         }
+
+        if (player._isSneaking() == true)
+        {
+            speed = 1f;
+            playerBody.drag = 5f;
+        }
+        else
+        {
+            speed = 3f;
+            playerBody.drag = 0f;
+        }
     }
     public bool _isSneaking()
     {
         return Input.GetAxisRaw("Vertical")<0;
     }
+
     public void TakeDamage(float damage)
     {
         health -= damage;
