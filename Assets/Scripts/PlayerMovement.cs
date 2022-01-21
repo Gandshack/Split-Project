@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Can jump a little bit too early and still succeed
-        if (Input.GetAxisRaw("Vertical") > 0)
+        if ((Input.GetAxisRaw("Vertical") > 0) ^ Input.GetKey(KeyCode.Space))
         {
             leewayLeft = jumpLeeway;
         }
