@@ -1,43 +1,53 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody2D controller;
+    // Configurable values
     public float speed = 5f;
     public float health = 80;
+    public float gravity = -9f;
+    public float jumpSpeed = 300;
+    public float jumpLeeway = 0.1f;
 
-    public bool isGrounded = false;
-    public RectTransform isGroundedChecker;
-    public bool isJumping = false;
+    Rigidbody2D playerBody;
 
-    public bool isLefted = false;
-    public RectTransform isLeftedChecker;
-    public bool isRighted = false;
-    public RectTransform isRightedChecker;
-    public float checkGroundRadius;
-    public LayerMask groundLayer;
-    public Camera playerCamera;
-    public LayerMask enemy;
-    public Transform punchOrigin;
-    public float gravity=-9f;
+    // Touching detection
+    [SerializeField] bool isGrounded = false;
+    [SerializeField] RectTransform isGroundedChecker;
+    [SerializeField] bool isLefted = false;
+    [SerializeField] RectTransform isLeftedChecker;
+    [SerializeField] bool isRighted = false;
+    [SerializeField] RectTransform isRightedChecker;
+    [SerializeField] LayerMask groundLayer;
 
-    public float jumpDelay = 0;
+    [SerializeField] Camera playerCamera;
+    [SerializeField] LayerMask enemy;
+    [SerializeField] Transform punchOrigin;
+
+    [SerializeField] float jumpDelay = 0;
+
+    [SerializeField] bool isJumping = false;
+    [SerializeField] float leewayLeft = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        controller=GetComponent<Rigidbody2D>();
+        playerBody = GetComponent<Rigidbody2D>();
         playerCamera=Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Determine whether the player is touching something
         isGrounded = CheckIfSided(isGroundedChecker);
         isLefted = CheckIfSided(isLeftedChecker);
         isRighted = CheckIfSided(isRightedChecker);
-        Vector2 velocity = new Vector2(1,0);
+
+        // Must wait before jumping again
         if (isJumping)
         {
             jumpDelay -= Time.deltaTime;
@@ -46,37 +56,55 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = false;
         }
-        if (!isJumping && isGrounded && Input.GetAxisRaw("Vertical") > 0)
+
+        // Can jump a little bit too early and still succeed
+        if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            leewayLeft = jumpLeeway;
+        }
+        if (leewayLeft > 0)
+        {
+            leewayLeft -= Time.deltaTime;
+        }
+
+        if (!isJumping && isGrounded && leewayLeft > 0)
         {
             isJumping = true;
             jumpDelay = 0.05f;
-            Vector2 vel2 = new Vector2(0, 100*speed);
-            controller.AddForce(vel2);
+            Vector2 vel2 = new Vector2(0, jumpSpeed);
+            playerBody.AddForce(vel2);
         }
+
+        // Player controlled horizontal force
+        Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
         if (Input.GetAxisRaw("Horizontal") < 0 &&!isLefted)
         {
-            controller.AddForce(-1000 * speed * velocity * Time.deltaTime);
+            playerBody.AddForce(-1000 * velocity);
         }
         if (Input.GetAxisRaw("Horizontal") > 0 &&!isRighted)
         {
-            controller.AddForce(1000 * speed * velocity * Time.deltaTime);
+            playerBody.AddForce(1000 * velocity);
         }
-        if (controller.velocity.x > 0)
+
+        // Air friction
+        if (playerBody.velocity.x > 0)
         {
-            controller.AddForce(-100 * speed * velocity * Time.deltaTime);
+            playerBody.AddForce(-100 * velocity);
         }
-        if (controller.velocity.x < 0)
+        if (playerBody.velocity.x < 0)
         {
-            controller.AddForce(100 * speed * velocity * Time.deltaTime);
+            playerBody.AddForce(100 * velocity);
         }
-        if (controller.velocity.x < -5)
+        // Max speed
+        if (playerBody.velocity.x < -5)
         {
-            controller.velocity = new Vector2(-5, controller.velocity.y);
+            playerBody.velocity = new Vector2(-5, playerBody.velocity.y);
         }
-        else if (controller.velocity.x > 5)
+        else if (playerBody.velocity.x > 5)
         {
-            controller.velocity = new Vector2(5, controller.velocity.y);
+            playerBody.velocity = new Vector2(5, playerBody.velocity.y);
         }
+        // Punching
         punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
         if(Input.GetMouseButtonDown(0)){
             punch();
@@ -102,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
     bool CheckIfSided(RectTransform isChecker)
     {
         Rect r = isChecker.rect;
-        //Debug.DrawRay(isChecker.position, r.size, Color.black);
         Collider2D collider = Physics2D.OverlapBox(isChecker.position, r.size, 0, groundLayer);
         if (collider != null)
         {
