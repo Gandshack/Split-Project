@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float health=100f;
-    public GameObject player;
-    public PlayerMovement playerMovement;
-    float playerDistance;
+    /// <summary>
+    /// The health of the enemy.
+    /// </summary>
+    public float Health=100f;
+
+    /// <summary>
+    /// The player.
+    /// </summary>
+    public GameObject Player;
+
+    /// <summary>
+    /// A reference to the player movement.
+    /// </summary>
+    /// 
+    public PlayerMovement PlayerMovement;
 
     void Update()
     {
-        playerDistance = Mathf.Sqrt(Mathf.Pow((player.transform.position.x - transform.position.x),2) + Mathf.Pow((player.transform.position.y - transform.position.y),2));
+        float playerDistance = Mathf.Sqrt(Mathf.Pow((Player.transform.position.x - transform.position.x),2) + Mathf.Pow((Player.transform.position.y - transform.position.y),2));
 
-        if ((playerMovement.WeaponOut == true) && playerDistance < 5f)
+        if ((PlayerMovement.WeaponOut == true) && playerDistance < 5f)
         {
             TakeDamage(100/playerDistance * Time.deltaTime);
         }
     }
     public void TakeDamage(float damage)
     {
-        health-=damage;
-        if(health<=0){
+        Health -= damage;
+        if(Health <= 0){
             Die();
         }
     }

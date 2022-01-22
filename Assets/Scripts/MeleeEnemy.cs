@@ -4,38 +4,68 @@ using UnityEngine;
 
 public class MeleeEnemy : MonoBehaviour
 {
-    Enemy enemy;
-    public PlayerMovement player;
-    public float speed=1f;
-    public float coolDown=0f;
+    /// <summary>
+    /// A reference to self.
+    /// </summary>
+    public Enemy ThisEnemy;
+
+    /// <summary>
+    /// A reference to the player movement.
+    /// </summary>
+    public PlayerMovement Player;
+
+    /// <summary>
+    /// The speed at which the enemy moves.
+    /// </summary>
+    public float Speed=1f;
+
+    /// <summary>
+    /// How long it takes for another hit.
+    /// </summary>
+    public float CoolDown = 1.0f;
+
+    /// <summary>
+    /// How long until the next hit.
+    /// </summary>
+    public float CoolDownLeft=0f;
+
+    /// <summary>
+    /// The damage to the player on hit.
+    /// </summary>
+    public float Damage = 10f;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        enemy=GetComponent<Enemy>();
+        ThisEnemy = GetComponent<Enemy>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        coolDown-=Time.deltaTime;
-        if((Vector2.Distance(transform.position,player.transform.position)<5f)&&!player._isSneaking()){
-            var step=speed*Time.deltaTime;
-            transform.position=Vector2.MoveTowards(transform.position,new Vector2(player.transform.position.x, transform.position.y),step);
-            if(coolDown<=0f){
-            hit();
-            coolDown=1f;
+        CoolDownLeft -= Time.deltaTime;
+        if((Vector2.Distance(transform.position, Player.transform.position)<5f)&&!Player._isSneaking())
+        {
+            var step= Speed * Time.deltaTime;
+            transform.position=Vector2.MoveTowards(transform.position,new Vector2(Player.transform.position.x, transform.position.y),step);
+            if(CoolDownLeft <= 0f)
+            {
+                Hit();
+                CoolDownLeft = CoolDown;
             }
         }
-        if(Mathf.Abs(transform.position.x-player.transform.position.x)<1f&&player.transform.position.y-transform.position.y<2f){
-            player.playerBody.AddForce(Vector2.left*10f);
+        if(Mathf.Abs(transform.position.x- Player.transform.position.x)<1f&& Player.transform.position.y-transform.position.y<2f)
+        {
+            Player.playerBody.AddForce(Vector2.left*10f);
         }
         
     }
 
-    void hit()
+    void Hit()
     {
-        if(Vector2.Distance(transform.position,player.transform.position)<2f){
-            player.TakeDamage(10);
+        if(Vector2.Distance(transform.position, Player.transform.position)<2f){
+            Player.TakeDamage(Damage);
         }
     }
 }

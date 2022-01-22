@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class Follow : MonoBehaviour
 {
-    public Rigidbody2D objectToFollow;
-    public Rigidbody2D cameraBody;
+    /// <summary>
+    /// The Rigidbody2D to follow
+    /// </summary>
+    public Rigidbody2D BodyToFollow;
 
-    public float speed = 1.0f;
+    /// <summary>
+    /// The Rigidbody2D of this entity.
+    /// </summary>
+    public Rigidbody2D ThisBody;
+
+    /// <summary>
+    /// The speed at which the entity follows.
+    /// </summary>
+    public float Speed = 1.0f;
 
     void Start()
     {
-        cameraBody = GetComponent<Rigidbody2D>();
+        ThisBody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        Vector2 dist = objectToFollow.position - cameraBody.position;
-        cameraBody.velocity = 10 * speed * dist;
+        Vector2 dist = BodyToFollow.position - ThisBody.position;
+        // This entity will reach the other one in 1 / Speed seconds,
+        // regardless of initial distance.
+        ThisBody.velocity = Speed * dist;
     }
 }
