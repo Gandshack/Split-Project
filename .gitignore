@@ -40,3 +40,4 @@ sysinfo.txt
 Logs/**
 Logs/AssetImportWorker0.log
 Logs/shadercompiler-AssetImportWorker0.log
+*.log
