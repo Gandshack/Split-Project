@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Lib;
+using Assets.Scripts;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float health = 80;
     public float gravity = -9f;
     public float jumpSpeed = 300;
-    public float jumpLeeway = 0.1f;
+
     public float maxSpeed = 5f;
 
     public Rigidbody2D playerBody;
@@ -28,57 +30,66 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask enemy;
     public Transform punchOrigin;
 
-    public float jumpDelay = 0;
-
-    public bool isJumping = false;
-    public float leewayLeft = 0;
+    public ActionWithCooldown jumpAction;
+    public ActionWithCooldown punchAction;
 
     public PlayerMovement player;
     public bool WeaponOut = true;
-    public float coolDown=0f;
+
     // Start is called before the first frame update
     void Start()
     {
+        jumpAction = new ActionWithCooldown(0.1f, 0.05f, this.Jump);
+        punchAction = new ActionWithCooldown(0.0f, 0.5f, this.Punch);
+
         playerBody = GetComponent<Rigidbody2D>();
-        playerCamera=Camera.main;
+        playerCamera = Camera.main;
+    }
+
+    bool Punch()
+    {
+        punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
+        Vector2 mousePos = Input.mousePosition;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, punchOrigin.right, 1, enemy);
+        if (hit)
+        {
+            Debug.Log(hit.transform.name);
+            hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(20);
+        }
+        return true;
+    }
+
+    bool Jump()
+    {
+        isGrounded = CheckIfSided(isGroundedChecker);
+        if (isGrounded)
+        {
+            Vector2 vel2 = new Vector2(0, jumpSpeed);
+            playerBody.AddForce(vel2);
+            return true;
+        }
+        return false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        coolDown-=Time.deltaTime*2f;
         // Determine whether the player is touching something
         isGrounded = CheckIfSided(isGroundedChecker);
         isLefted = CheckIfSided(isLeftedChecker);
         isRighted = CheckIfSided(isRightedChecker);
 
-        // Must wait before jumping again
-        if (isJumping)
-        {
-            jumpDelay -= Time.deltaTime;
-        }
-        if (jumpDelay < 0)
-        {
-            isJumping = false;
-        }
-
-        // Can jump a little bit too early and still succeed
         if ((Input.GetAxisRaw("Vertical") > 0) ^ Input.GetKey(KeyCode.Space))
         {
-            leewayLeft = jumpLeeway;
+            jumpAction.Trigger();
         }
-        if (leewayLeft > 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            leewayLeft -= Time.deltaTime;
+            punchAction.Trigger();
         }
 
-        if (!isJumping && isGrounded && leewayLeft > 0)
-        {
-            isJumping = true;
-            jumpDelay = 0.05f;
-            Vector2 vel2 = new Vector2(0, jumpSpeed);
-            playerBody.AddForce(vel2);
-        }
+        punchAction.Proceed(Time.deltaTime);
+        jumpAction.Proceed(Time.deltaTime);
 
         // Player controlled horizontal force
         Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
@@ -108,12 +119,6 @@ public class PlayerMovement : MonoBehaviour
         else if (playerBody.velocity.x > maxSpeed)
         {
             playerBody.velocity = new Vector2(maxSpeed, playerBody.velocity.y);
-        }
-        // Punching
-        punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
-        if(Input.GetMouseButtonDown(0)&&coolDown<=0){
-            punch();
-            coolDown=1f;
         }
         if(Input.GetKeyDown(KeyCode.E)){
             WeaponOut=!WeaponOut;
@@ -161,15 +166,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             return false;
-        }
-    }
-
-    void punch(){
-        Vector2 mousePos=Input.mousePosition;
-        RaycastHit2D hit=Physics2D.Raycast(transform.position, punchOrigin.right, 1, enemy);
-        if(hit){
-            Debug.Log(hit.transform.name);
-            hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(20);
         }
     }
 }
