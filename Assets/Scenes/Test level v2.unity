@@ -751,8 +751,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d429657dc2b9194a97a1b4248cd4e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisEnemy: {fileID: 0}
-  Player: {fileID: 0}
+  ThisEnemy: {fileID: 994593465}
+  Player: {fileID: 1837582064}
   Speed: 1
   CoolDown: 1
   CoolDownLeft: 0
