@@ -63,8 +63,8 @@ public class PlayerMovement : MonoBehaviour
 
     bool Jump()
     {
-        isGrounded = CheckIfSided(isGroundedChecker);
-        if (isGrounded || onSlope)
+        isGrounded = OnGround();
+        if (isGrounded)
         {
             Vector2 vel2 = new Vector2(0, jumpSpeed);
             playerBody.AddForce(vel2);
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-   /* bool OnSlope()
+   /*bool OnSlope()
     {
         Rect r = isGroundedChecker.rect;
         float y = isGroundedChecker.position.y;
@@ -99,12 +99,28 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }*/
 
+    bool OnGround()
+    {
+        Rect r = isGroundedChecker.rect;
+        float y = isGroundedChecker.position.y;
+        float x1 = isGroundedChecker.position.x - r.size.x / 2;
+        float x2 = isGroundedChecker.position.x + r.size.x / 2;
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(x1, y), new Vector2(0, -1), 0.04f, groundLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(x2, y), new Vector2(0, -1), 0.04f, groundLayer);
+        if (hit && hit2)
+        {
+            Debug.Log(hit.distance);
+            Debug.Log(hit2.distance);
+        }
+         return hit || hit2;
+    }
+
     // Update is called once per frame
     void Update()
     {
         // Determine whether the player is touching something
         //onSlope = OnSlope();
-        isGrounded = CheckIfSided(isGroundedChecker);
+        isGrounded = OnGround();
         isLefted = CheckIfSided(isLeftedChecker);
         isRighted = CheckIfSided(isRightedChecker);
 
