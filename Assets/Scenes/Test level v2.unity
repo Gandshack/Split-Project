@@ -472,7 +472,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &745089393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,9 +485,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632296db2b9a33d4b91c4f5b9d7e3605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToFollow: {fileID: 1837582062}
-  cameraBody: {fileID: 745089392}
-  speed: 2
+  BodyToFollow: {fileID: 1837582062}
+  ThisBody: {fileID: 745089392}
+  Speed: 1
 --- !u!61 &745089394
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -751,9 +751,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d429657dc2b9194a97a1b4248cd4e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1837582064}
-  speed: 3
-  coolDown: 0
+  ThisEnemy: {fileID: 994593465}
+  Player: {fileID: 1837582064}
+  Speed: 1
+  CoolDown: 1
+  CoolDownLeft: 0
+  Damage: 10
 --- !u!50 &994593463
 Rigidbody2D:
   serializedVersion: 4
@@ -813,9 +816,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164612f875745c54db979b04fb892c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  player: {fileID: 1837582060}
-  playerMovement: {fileID: 1837582064}
+  Health: 100
+  Player: {fileID: 1837582060}
+  PlayerMovement: {fileID: 1837582064}
 --- !u!1 &1011451028
 GameObject:
   m_ObjectHideFlags: 0
@@ -13627,7 +13630,6 @@ MonoBehaviour:
   health: 80
   gravity: -1
   jumpSpeed: 300
-  jumpLeeway: 0.1
   maxSpeed: 5
   playerBody: {fileID: 0}
   isGrounded: 0
@@ -13639,17 +13641,14 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  onSlope: 0
   playerCamera: {fileID: 745089389}
   enemy:
     serializedVersion: 2
     m_Bits: 8
   punchOrigin: {fileID: 1184991064}
-  jumpDelay: 0
-  isJumping: 0
-  leewayLeft: 0
   player: {fileID: 1837582064}
   WeaponOut: 1
-  coolDown: 0
 --- !u!212 &1837582065
 SpriteRenderer:
   m_ObjectHideFlags: 0
