@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public RectTransform isRightedChecker;
     public LayerMask groundLayer;
 
+    public bool onSlope = false;
+
     public Camera playerCamera;
     public LayerMask enemy;
     public Transform punchOrigin;
@@ -62,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     bool Jump()
     {
         isGrounded = CheckIfSided(isGroundedChecker);
-        if (isGrounded)
+        if (isGrounded || onSlope)
         {
             Vector2 vel2 = new Vector2(0, jumpSpeed);
             playerBody.AddForce(vel2);
@@ -71,10 +73,37 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
+   /* bool OnSlope()
+    {
+        Rect r = isGroundedChecker.rect;
+        float y = isGroundedChecker.position.y;
+        float x1 = isGroundedChecker.position.x - r.size.x/2;
+        float x2 = isGroundedChecker.position.x + r.size.x / 2;
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(x1, y), new Vector2(0, -1), 0.5f, groundLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(x1+0.01f, y), new Vector2(0, -1), 0.5f, groundLayer);
+        RaycastHit2D hit3 = Physics2D.Raycast(new Vector2(x2-0.01f, y), new Vector2(0, -1), 0.5f, groundLayer);
+        RaycastHit2D hit4 = Physics2D.Raycast(new Vector2(x2, y), new Vector2(0, -1), 0.5f, groundLayer);
+
+        if (hit && hit2)
+        {
+            Debug.Log(hit.distance);
+            Debug.Log(hit2.distance);
+            return Math.Min(hit.distance, hit2.distance) < 0.2f && Math.Abs(hit.distance - hit2.distance) > 0.005f;
+        }
+        if (hit3 && hit4)
+        {
+            Debug.Log(hit3.distance);
+            Debug.Log(hit4.distance);
+            return Math.Min(hit3.distance, hit4.distance) < 0.2f && Math.Abs(hit3.distance - hit4.distance) > 0.005f;
+        }
+        return false;
+    }*/
+
     // Update is called once per frame
     void Update()
     {
         // Determine whether the player is touching something
+        //onSlope = OnSlope();
         isGrounded = CheckIfSided(isGroundedChecker);
         isLefted = CheckIfSided(isLeftedChecker);
         isRighted = CheckIfSided(isRightedChecker);
@@ -93,11 +122,11 @@ public class PlayerMovement : MonoBehaviour
 
         // Player controlled horizontal force
         Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
-        if (Input.GetAxisRaw("Horizontal") < 0 &&!isLefted)
+        if (Input.GetAxisRaw("Horizontal") < 0 &&(!isLefted || isGrounded))
         {
             playerBody.AddForce(-1000 * velocity);
         }
-        if (Input.GetAxisRaw("Horizontal") > 0 &&!isRighted)
+        if (Input.GetAxisRaw("Horizontal") > 0 &&(!isRighted || isGrounded))
         {
             playerBody.AddForce(1000 * velocity);
         }
