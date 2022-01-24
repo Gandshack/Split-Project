@@ -40,3 +40,4 @@ sysinfo.txt
 ApiUpdaterCheck.txt
 Logs/**
 *.log
+UserSettings/EditorUserSettings.asset
