@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public RectTransform isRightedChecker;
     public LayerMask groundLayer;
 
-    public bool onSlope = false;
+    public bool SlopeLeft = false;
 
     public Camera playerCamera;
     public LayerMask enemy;
@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = OnGround();
         if (isGrounded)
         {
+            playerBody.velocity = new Vector2(playerBody.velocity.x, 0);
             Vector2 vel2 = new Vector2(0, jumpSpeed);
             playerBody.AddForce(vel2);
             return true;
@@ -105,14 +106,37 @@ public class PlayerMovement : MonoBehaviour
         float y = isGroundedChecker.position.y;
         float x1 = isGroundedChecker.position.x - r.size.x / 2;
         float x2 = isGroundedChecker.position.x + r.size.x / 2;
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(x1, y), new Vector2(0, -1), 0.04f, groundLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(x2, y), new Vector2(0, -1), 0.04f, groundLayer);
-        if (hit && hit2)
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(x1, y), new Vector2(0, -1), 0.05f, groundLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(x2, y), new Vector2(0, -1), 0.05f, groundLayer);
+         return hit || hit2;
+    }
+
+    bool IsSlopeLeft()
+    {
+        Rect r = isGroundedChecker.rect;
+        float y1 = isGroundedChecker.position.y;
+        float y2 = isGroundedChecker.position.y + r.size.x / 2;
+        float x = isGroundedChecker.position.x - r.size.x / 2;
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(x, y1), new Vector2(-1, 0), 0.05f, groundLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(x, y2), new Vector2(-1, 0), 0.05f, groundLayer);
+
+        /*if (hit)
         {
             Debug.Log(hit.distance);
+        }
+        else
+        {
+            Debug.Log("No on 1");
+        }
+        if (hit2)
+        {
             Debug.Log(hit2.distance);
         }
-         return hit || hit2;
+        else
+        {
+            Debug.Log("No on 2");
+        }*/
+        return hit && !hit2;
     }
 
     // Update is called once per frame
@@ -123,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = OnGround();
         isLefted = CheckIfSided(isLeftedChecker);
         isRighted = CheckIfSided(isRightedChecker);
+        SlopeLeft = IsSlopeLeft();
 
         if ((Input.GetAxisRaw("Vertical") > 0) ^ Input.GetKey(KeyCode.Space))
         {
@@ -137,25 +162,24 @@ public class PlayerMovement : MonoBehaviour
         jumpAction.Proceed(Time.deltaTime);
 
         // Player controlled horizontal force
-        Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
         if (Input.GetAxisRaw("Horizontal") < 0 &&(!isLefted || isGrounded))
         {
-            playerBody.AddForce(-1000 * velocity);
+            Vector2 velocity = new Vector2(-speed * Time.deltaTime, 0);
+            if (SlopeLeft && isGrounded)
+            {
+                velocity.y = -velocity.x;
+                velocity.x = 0;
+            }
+            playerBody.AddForce(1000 * velocity);
         }
         if (Input.GetAxisRaw("Horizontal") > 0 &&(!isRighted || isGrounded))
         {
+            Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
             playerBody.AddForce(1000 * velocity);
         }
 
-        // Air friction
-        if (playerBody.velocity.x > 0)
-        {
-            playerBody.AddForce(-100 * velocity);
-        }
-        if (playerBody.velocity.x < 0)
-        {
-            playerBody.AddForce(100 * velocity);
-        }
+        // Auto-jump up slopes
+
         // Max speed
         if (playerBody.velocity.x < -maxSpeed)
         {
