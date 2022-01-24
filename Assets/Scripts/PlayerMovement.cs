@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
         Vector2 mousePos = Input.mousePosition;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, punchOrigin.right, 1, enemy);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, punchOrigin.forward, 1, enemy);
         if (hit)
         {
             Debug.Log(hit.transform.name);
@@ -151,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        punchOrigin.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         // Determine whether the player is touching something
         //onSlope = OnSlope();
         isGrounded = OnGround();
