@@ -74,31 +74,40 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-   /*bool OnSlope()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Rect r = isGroundedChecker.rect;
-        float y = isGroundedChecker.position.y;
-        float x1 = isGroundedChecker.position.x - r.size.x/2;
-        float x2 = isGroundedChecker.position.x + r.size.x / 2;
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(x1, y), new Vector2(0, -1), 0.5f, groundLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(x1+0.01f, y), new Vector2(0, -1), 0.5f, groundLayer);
-        RaycastHit2D hit3 = Physics2D.Raycast(new Vector2(x2-0.01f, y), new Vector2(0, -1), 0.5f, groundLayer);
-        RaycastHit2D hit4 = Physics2D.Raycast(new Vector2(x2, y), new Vector2(0, -1), 0.5f, groundLayer);
+        Debug.Log(collision.gameObject.layer);
+        if (collision.gameObject.layer == 9)
+        {
+            Die();
+        }
+    }
 
-        if (hit && hit2)
-        {
-            Debug.Log(hit.distance);
-            Debug.Log(hit2.distance);
-            return Math.Min(hit.distance, hit2.distance) < 0.2f && Math.Abs(hit.distance - hit2.distance) > 0.005f;
-        }
-        if (hit3 && hit4)
-        {
-            Debug.Log(hit3.distance);
-            Debug.Log(hit4.distance);
-            return Math.Min(hit3.distance, hit4.distance) < 0.2f && Math.Abs(hit3.distance - hit4.distance) > 0.005f;
-        }
-        return false;
-    }*/
+    /*bool OnSlope()
+     {
+         Rect r = isGroundedChecker.rect;
+         float y = isGroundedChecker.position.y;
+         float x1 = isGroundedChecker.position.x - r.size.x/2;
+         float x2 = isGroundedChecker.position.x + r.size.x / 2;
+         RaycastHit2D hit = Physics2D.Raycast(new Vector2(x1, y), new Vector2(0, -1), 0.5f, groundLayer);
+         RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(x1+0.01f, y), new Vector2(0, -1), 0.5f, groundLayer);
+         RaycastHit2D hit3 = Physics2D.Raycast(new Vector2(x2-0.01f, y), new Vector2(0, -1), 0.5f, groundLayer);
+         RaycastHit2D hit4 = Physics2D.Raycast(new Vector2(x2, y), new Vector2(0, -1), 0.5f, groundLayer);
+
+         if (hit && hit2)
+         {
+             Debug.Log(hit.distance);
+             Debug.Log(hit2.distance);
+             return Math.Min(hit.distance, hit2.distance) < 0.2f && Math.Abs(hit.distance - hit2.distance) > 0.005f;
+         }
+         if (hit3 && hit4)
+         {
+             Debug.Log(hit3.distance);
+             Debug.Log(hit4.distance);
+             return Math.Min(hit3.distance, hit4.distance) < 0.2f && Math.Abs(hit3.distance - hit4.distance) > 0.005f;
+         }
+         return false;
+     }*/
 
     bool OnGround()
     {
