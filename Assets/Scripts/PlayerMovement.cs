@@ -149,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         punchOrigin.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         // Determine whether the player is touching something
