@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Lib;
 using Assets.Scripts;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -267,6 +268,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
+        SceneManager.LoadScene("MainMenu");
         Debug.Log("player ded");
     }
 

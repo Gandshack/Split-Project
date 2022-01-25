@@ -17,6 +17,6 @@ public class LoadGameButtonScript : MonoBehaviour
         
     }
     public void ChangeScene(){
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Test level");
     }
 }
