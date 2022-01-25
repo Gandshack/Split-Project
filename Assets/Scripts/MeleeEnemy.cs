@@ -34,11 +34,13 @@ public class MeleeEnemy : MonoBehaviour
     /// </summary>
     public float Damage = 10f;
 
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         ThisEnemy = GetComponent<Enemy>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -57,9 +59,13 @@ public class MeleeEnemy : MonoBehaviour
         }
         if(Mathf.Abs(transform.position.x- Player.transform.position.x)<1f&& Player.transform.position.y-transform.position.y<2f)
         {
+            anim.SetFloat("Speed", 1);
             Player.Pull();
         }
-        
+        else
+        {
+            anim.SetFloat("Speed", 0);
+        }
     }
 
     void Hit()
