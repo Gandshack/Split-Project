@@ -29,7 +29,7 @@ public class RangedEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shoot = new ActionWithCooldown(0.0f, 1f, this.Shoot);
+        shoot = new ActionWithCooldown(0.0f, 2f, this.Shoot);
         ThisEnemy = GetComponent<Enemy>();
     }
 
