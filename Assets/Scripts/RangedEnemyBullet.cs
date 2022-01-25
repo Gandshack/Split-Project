@@ -11,15 +11,18 @@ public class RangedEnemyBullet : MonoBehaviour
     void Start()
     {
         lifetime = new Countdown(0.5f);
+        lifetime.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.left * Time.deltaTime);
+        //GetComponent<Rigidbody2D>().AddForce(Vector2.left * Time.deltaTime);
         lifetime.Proceed(Time.deltaTime);
+        Debug.Log("RUNNING!");
         if (!lifetime.IsRunning())
         {
+            Debug.Log("DONE!");
             Destroy(this.gameObject);
         }
     }

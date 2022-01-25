@@ -44,7 +44,14 @@ namespace Assets.Scripts
 
         public void Trigger()
         {
-            triggerKept.Start();
+            if (!inProgress.IsRunning() && Attempt())
+            {
+                inProgress.Start();
+            }
+            else
+            {
+                triggerKept.Start();
+            }
         }
     }
 }
