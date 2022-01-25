@@ -115,7 +115,8 @@ public class HealthComponent : MonoBehaviour, IHealthComponent
         {
             throw new ArgumentException("Heal amount cannot be negative.");
         }
-        thisHealthComponent.CurrentHealth += healAmount;
+        thisHealthComponent.CurrentHealth = Math.Min(thisHealthComponent.CurrentHealth + healAmount,
+            thisHealthComponent.MaximumHealth);
     }
 
     /// <summary>

@@ -1,3 +1,5 @@
+using Assets.Scripts.Lib;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,16 +22,29 @@ public class Enemy : MonoBehaviour
     /// 
     private PlayerMovement PlayerMovement;
 
+    private Countdown sanityCountdown;
+
     private void Start()
     {
         hc = GetComponent<HealthComponent>();
         PlayerMovement = Player.GetComponent<PlayerMovement>();
+        sanityCountdown = new Countdown(0.2f);
     }
 
     void Update()
     {
-        float playerDistance = Mathf.Sqrt(Mathf.Pow((Player.transform.position.x - transform.position.x),2) + Mathf.Pow((Player.transform.position.y - transform.position.y),2));
+        float playerDistance = (Player.transform.position - transform.position).magnitude;
 
+        if (playerDistance < 10)
+        {
+            sanityCountdown.Proceed((float)(Time.deltaTime / Math.Max(playerDistance, 0.5)));
+
+            if (!sanityCountdown.IsRunning())
+            {
+                PlayerMovement.DamageSanity(1);
+                sanityCountdown.Start();
+            }
+        }
         if ((PlayerMovement.WeaponOut == true) && playerDistance < 5f)
         {
             TakeDamage(100/playerDistance * Time.deltaTime);

@@ -13,7 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 300;
 
     public HealthBar healthBar;
+    public HealthBar sanityBar;
     public HealthComponent hc;
+    public HealthComponent sc;
+
+    public Countdown sanityHeal;
 
     public float maxSpeed = 5f;
 
@@ -49,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
         playerBody = GetComponent<Rigidbody2D>();
         playerCamera = Camera.main;
         player = GetComponent<PlayerMovement>();
+
+        sanityHeal = new Countdown(0.1f);
     }
 
     bool Punch()
@@ -221,7 +227,14 @@ public class PlayerMovement : MonoBehaviour
             speed = 3f;
             maxSpeed = 5f;
         }
-        
+        sanityHeal.Proceed(Time.deltaTime);
+        if (!sanityHeal.IsRunning())
+        {
+            sc.Heal(1);
+            sanityHeal = new Countdown(0.1f);
+            sanityHeal.Start();
+            sanityBar.UpdateHealth(sc.GetHealthFraction());
+        }
     }
     public bool _isSneaking()
     {
@@ -238,6 +251,20 @@ public class PlayerMovement : MonoBehaviour
             Die();
         }
     }
+
+    public void DamageSanity(float damage)
+    {
+        Debug.Log("Sanity!");
+        sc.OnDamage((int)damage);
+        sanityHeal = new Countdown(3f);
+        sanityHeal.Start();
+        sanityBar.UpdateHealth(sc.GetHealthFraction());
+        if (sc.IsDead())
+        {
+            Die();
+        }
+    }
+
     public void Die()
     {
         Debug.Log("player ded");
