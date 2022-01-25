@@ -5,6 +5,18 @@ using UnityEngine;
 
 public class RangedEnemy : MonoBehaviour
 {
+
+    /// <summary>
+    /// A reference to self.
+    /// </summary>
+    public Enemy ThisEnemy;
+
+    /// <summary>
+    /// A reference to the player movement.
+    /// </summary>
+    public PlayerMovement Player;
+
+
     public bool isLookingLeft=false;
     public float lookingRange=5f;
     public Vector2 lookingDirection;
@@ -18,6 +30,7 @@ public class RangedEnemy : MonoBehaviour
     void Start()
     {
         shoot = new ActionWithCooldown(0.0f, 1f, this.Shoot);
+        ThisEnemy = GetComponent<Enemy>();
     }
 
     // Update is called once per frame
@@ -34,8 +47,12 @@ public class RangedEnemy : MonoBehaviour
     
     void HandlePlayerChecking()
     {
-        RaycastHit2D hit=Physics2D.Raycast(transform.position,lookingDirection, lookingRange, 1);
-        if (hit && hit.transform.gameObject.GetComponent<PlayerMovement>()!=null){
+        Rigidbody2D rbP = Player.gameObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbE = ThisEnemy.gameObject.GetComponent<Rigidbody2D>();
+        Vector2 posP = rbP.position;
+        Vector2 posE = shootLocation.position;
+        if ((posP - posE).magnitude < lookingRange && (posP - posE).normalized.x * lookingDirection.x > 0)
+        {
             shoot.Trigger();
         }
     }
@@ -48,6 +65,8 @@ public class RangedEnemy : MonoBehaviour
         {
             Debug.Log("hi");
             rb.AddForce(lookingDirection * projForce);
+            rb.AddForce(Vector2.up * projForce/4);
+
         }
         return true;
     }

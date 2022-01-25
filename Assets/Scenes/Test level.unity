@@ -649,10 +649,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c253d7055a42cea45b7a7aa51473556c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisEnemy: {fileID: 527008429}
+  Player: {fileID: 1837582067}
   isLookingLeft: 1
   lookingRange: 5
   lookingDirection: {x: 0, y: 0}
   Projectile: {fileID: 1466991130836567177, guid: 2398a2b02a6718242b10e9fa135a0466, type: 3}
+  projForce: 500
   shootLocation: {fileID: 1813659676}
 --- !u!114 &527008429
 MonoBehaviour:
@@ -27041,7 +27044,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813659675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.88, y: 0.8, z: 0}
+  m_LocalPosition: {x: -0.93, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 527008434}

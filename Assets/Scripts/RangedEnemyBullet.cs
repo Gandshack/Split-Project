@@ -10,7 +10,7 @@ public class RangedEnemyBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lifetime = new Countdown(0.5f);
+        lifetime = new Countdown(1f);
         lifetime.Start();
     }
 
@@ -19,11 +19,19 @@ public class RangedEnemyBullet : MonoBehaviour
     {
         //GetComponent<Rigidbody2D>().AddForce(Vector2.left * Time.deltaTime);
         lifetime.Proceed(Time.deltaTime);
-        Debug.Log("RUNNING!");
         if (!lifetime.IsRunning())
         {
-            Debug.Log("DONE!");
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        HealthComponent hc = collision.gameObject.GetComponent<HealthComponent>();
+        if (hc)
+        {
+            hc.OnDamage(10);
+        }
+        Destroy(this.gameObject);
     }
 }
