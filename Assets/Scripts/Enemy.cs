@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// The health of the enemy.
     /// </summary>
-    public float Health=100f;
+    private HealthComponent hc;
 
     /// <summary>
     /// The player.
@@ -18,7 +18,13 @@ public class Enemy : MonoBehaviour
     /// A reference to the player movement.
     /// </summary>
     /// 
-    public PlayerMovement PlayerMovement;
+    private PlayerMovement PlayerMovement;
+
+    private void Start()
+    {
+        hc = GetComponent<HealthComponent>();
+        PlayerMovement = Player.GetComponent<PlayerMovement>();
+    }
 
     void Update()
     {
@@ -31,8 +37,8 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        Health -= damage;
-        if(Health <= 0){
+        hc.OnDamage((int)damage);
+        if(hc.IsDead()){
             Die();
         }
     }

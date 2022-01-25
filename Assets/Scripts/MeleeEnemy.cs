@@ -57,7 +57,7 @@ public class MeleeEnemy : MonoBehaviour
         }
         if(Mathf.Abs(transform.position.x- Player.transform.position.x)<1f&& Player.transform.position.y-transform.position.y<2f)
         {
-            Player.playerBody.AddForce(Vector2.left*10f);
+            Player.Pull();
         }
         
     }

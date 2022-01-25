@@ -9,13 +9,10 @@ public class PlayerMovement : MonoBehaviour
 {
     // Configurable values
     public float speed = 5f;
-    public float health = 80;
     public float gravity = -9f;
     public float jumpSpeed = 300;
 
     public float maxSpeed = 5f;
-
-    public Rigidbody2D playerBody;
 
     // Touching detection
     public bool isGrounded = false;
@@ -28,15 +25,19 @@ public class PlayerMovement : MonoBehaviour
 
     public bool SlopeLeft = false;
 
-    public Camera playerCamera;
+    private Camera playerCamera;
     public LayerMask enemy;
     public Transform punchOrigin;
 
     public ActionWithCooldown jumpAction;
     public ActionWithCooldown punchAction;
 
-    public PlayerMovement player;
     public bool WeaponOut = true;
+
+    private PlayerMovement player;
+    private Rigidbody2D playerBody;
+    private HealthComponent hc;
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
 
         playerBody = GetComponent<Rigidbody2D>();
         playerCamera = Camera.main;
+        hc = GetComponent<HealthComponent>();
+        player = GetComponent<PlayerMovement>();
+
     }
 
     bool Punch()
@@ -72,6 +76,11 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void Pull()
+    {
+        playerBody.AddForce(Vector2.left * 10f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -223,8 +232,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0)
+        hc.OnDamage((int)damage);
+        if (hc.IsDead())
         {
             Die();
         }
