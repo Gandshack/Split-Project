@@ -27,10 +27,10 @@ public class RangedEnemyBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        HealthComponent hc = collision.gameObject.GetComponent<HealthComponent>();
+        PlayerMovement hc = collision.gameObject.GetComponent<PlayerMovement>();
         if (hc)
         {
-            hc.OnDamage(10);
+            hc.TakeDamage(10);
         }
         Destroy(this.gameObject);
     }

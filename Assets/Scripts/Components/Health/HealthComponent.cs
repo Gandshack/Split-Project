@@ -78,6 +78,12 @@ public class HealthComponent : MonoBehaviour, IHealthComponent
         }
     }
 
+    public float GetHealthFraction()
+    {
+        return (float)thisHealthComponent.CurrentHealth / thisHealthComponent.MaximumHealth;
+    }
+
+
     /// <summary>
     /// This function handles when the entity takes damage.
     /// This subtracts the passed in damageAmount from the

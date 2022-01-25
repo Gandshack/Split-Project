@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9f;
     public float jumpSpeed = 300;
 
+    public HealthBar healthBar;
+    public HealthComponent hc;
+
     public float maxSpeed = 5f;
 
     // Touching detection
@@ -36,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerMovement player;
     private Rigidbody2D playerBody;
-    private HealthComponent hc;
-
 
     // Start is called before the first frame update
     void Start()
@@ -47,9 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         playerBody = GetComponent<Rigidbody2D>();
         playerCamera = Camera.main;
-        hc = GetComponent<HealthComponent>();
         player = GetComponent<PlayerMovement>();
-
     }
 
     bool Punch()
@@ -222,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
             speed = 3f;
             maxSpeed = 5f;
         }
-
+        
     }
     public bool _isSneaking()
     {
@@ -233,6 +232,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage(float damage)
     {
         hc.OnDamage((int)damage);
+        healthBar.UpdateHealth(hc.GetHealthFraction());
         if (hc.IsDead())
         {
             Die();

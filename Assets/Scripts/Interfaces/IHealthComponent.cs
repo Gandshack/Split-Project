@@ -64,5 +64,7 @@ public interface IHealthComponent
     /// is less than 0.
     /// </summary>
     void OnDeath();
+
+    public float GetHealthFraction();
     #endregion
 }
