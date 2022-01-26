@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoadGameButtonScript : MonoBehaviour
 {
-
+    public string scene="Test level";
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +17,6 @@ public class LoadGameButtonScript : MonoBehaviour
         
     }
     public void ChangeScene(){
-        SceneManager.LoadScene("Test level");
+        SceneManager.LoadScene(scene);
     }
 }
