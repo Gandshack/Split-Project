@@ -22,15 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float maxSpeed = 5f;
 
-    // Touching detection
-    public bool isGrounded = false;
-    public bool isLefted = false;
-    public bool isRighted = false;
-    public LayerMask groundLayer;
-
-    public bool SlopeLeft = false;
-    public bool SlopeRight = false;
-
+    public CollisionTypeDetect CTD;
 
     private Camera playerCamera;
     public LayerMask enemy;
@@ -42,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     public bool WeaponOut = true;
 
     private Rigidbody2D playerBody;
-    private BoxCollider2D playerCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         punchAction = new ActionWithCooldown(0.0f, 0.5f, this.Punch);
 
         playerBody = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<BoxCollider2D>();
+        CTD = GetComponent<CollisionTypeDetect>();
         playerCamera = Camera.main;
 
         sanityHeal = new Countdown(0.1f);
@@ -72,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool Jump()
     {
-        if (isGrounded)
+        if (CTD.isGrounded)
         {
             playerBody.velocity = new Vector2(playerBody.velocity.x, 0);
             Vector2 vel2 = new Vector2(0, jumpSpeed);
@@ -99,50 +90,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    bool OnGround()
-    {
-        Bounds r = playerCollider.bounds;
-        Vector2 pos = r.center - r.extents;
-        RaycastHit2D hit = Physics2D.Raycast(pos, new Vector2(0, -1), 0.05f, groundLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(pos + new Vector2(2*r.extents.x, 0), new Vector2(0, -1), 0.05f, groundLayer);
-        return hit || hit2;
-    }
-
-    bool TouchingInDir(Vector2 dir)
-    {
-        Bounds r = playerCollider.bounds;
-        RaycastHit2D hit = Physics2D.BoxCast(r.center, r.size, 0, dir, 0.05f, groundLayer);
-        return hit;
-    }
-
-    bool IsSlopeLeft()
-    {
-        Bounds r = playerCollider.bounds;
-        Vector2 pos = r.center - r.extents;
-        RaycastHit2D hit = Physics2D.Raycast(pos, new Vector2(-1, 0), 0.05f, groundLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(pos+new Vector2(0, r.extents.y), new Vector2(-1, 0), 0.05f, groundLayer);
-        return hit && !hit2;
-    }
-    bool IsSlopeRight()
-    {
-        Bounds r = playerCollider.bounds;
-        Vector2 pos = r.center + r.extents;
-        RaycastHit2D hit = Physics2D.Raycast(pos - new Vector2(0, 2*r.extents.y), new Vector2(1, 0), 0.05f, groundLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(pos - new Vector2(0, r.extents.y), new Vector2(1, 0), 0.05f, groundLayer);
-        return hit && !hit2;
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
         punchOrigin.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         // Determine whether the player is touching something
-        isGrounded = TouchingInDir(Vector2.down);
-        isLefted = TouchingInDir(Vector2.left);
-        isRighted = TouchingInDir(Vector2.right);
-        SlopeLeft = IsSlopeLeft();
-        SlopeRight = IsSlopeRight();
-
 
         if ((Input.GetAxisRaw("Vertical") > 0) ^ Input.GetKey(KeyCode.Space))
         {
@@ -157,20 +109,20 @@ public class PlayerMovement : MonoBehaviour
         jumpAction.Proceed(Time.deltaTime);
 
         // Player controlled horizontal force
-        if (Input.GetAxisRaw("Horizontal") < 0 &&(!isLefted || isGrounded))
+        if (Input.GetAxisRaw("Horizontal") < 0 &&(!CTD.isLefted || CTD.isGrounded))
         {
             Vector2 velocity = new Vector2(-speed * Time.deltaTime, 0);
-            if (SlopeLeft && isGrounded)
+            if (CTD.SlopeLeft && CTD.isGrounded)
             {
                 velocity.y = -velocity.x;
                 velocity.x = 0;
             }
             playerBody.AddForce(1000 * velocity);
         }
-        if (Input.GetAxisRaw("Horizontal") > 0 &&(!isRighted || isGrounded))
+        if (Input.GetAxisRaw("Horizontal") > 0 &&(!CTD.isRighted || CTD.isGrounded))
         {
             Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
-            if (SlopeRight && isGrounded)
+            if (CTD.SlopeRight && CTD.isGrounded)
             {
                 velocity.y = velocity.x;
                 velocity.x = 0;

@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 8381747224966226826}
   - component: {fileID: 8381747224966226836}
   - component: {fileID: 8381747224966226839}
+  - component: {fileID: 4395274339308546383}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -308,14 +309,7 @@ MonoBehaviour:
   hc: {fileID: 8381747224966226839}
   sc: {fileID: 8381747224565515847}
   maxSpeed: 5
-  isGrounded: 0
-  isLefted: 0
-  isRighted: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  SlopeLeft: 0
-  SlopeRight: 0
+  CTD: {fileID: 4395274339308546383}
   enemy:
     serializedVersion: 2
     m_Bits: 8
@@ -334,6 +328,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaximumHealth_Unity: 100
+--- !u!114 &4395274339308546383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8381747224966226827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807aaf19ca9cfb44d9b39f9d88f05a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  isLefted: 0
+  isRighted: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  SlopeLeft: 0
+  SlopeRight: 0
 --- !u!1 &8381747225652142640
 GameObject:
   m_ObjectHideFlags: 0
