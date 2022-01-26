@@ -72,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
 
     bool Jump()
     {
-        isGrounded = OnGround();
         if (isGrounded)
         {
             playerBody.velocity = new Vector2(playerBody.velocity.x, 0);
@@ -164,7 +163,6 @@ public class PlayerMovement : MonoBehaviour
     {
         punchOrigin.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         // Determine whether the player is touching something
-        //onSlope = OnSlope();
         isGrounded = TouchingInDir(Vector2.down);
         isLefted = TouchingInDir(Vector2.left);
         isRighted = TouchingInDir(Vector2.right);
