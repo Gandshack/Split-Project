@@ -41,6 +41,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         ThisEnemy = GetComponent<Enemy>();
         anim = GetComponent<Animator>();
+        Player=GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
