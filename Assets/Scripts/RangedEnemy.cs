@@ -15,7 +15,7 @@ public class RangedEnemy : MonoBehaviour
     /// A reference to the player movement.
     /// </summary>
     public PlayerMovement Player;
-
+    public float desiredDistance=4f;
 
     public bool isLookingLeft=false;
     public float lookingRange=5f;
@@ -55,7 +55,14 @@ public class RangedEnemy : MonoBehaviour
         if ((posP - posE).magnitude < lookingRange && (posP - posE).normalized.x * lookingDirection.x > 0)
         {
             shoot.Trigger();
+            if(Vector2.Distance(transform.position, Player.transform.position)<desiredDistance){
+                rbE.velocity=-lookingDirection;
+            }
+            if(Vector2.Distance(transform.position, Player.transform.position)>desiredDistance){
+                rbE.velocity=lookingDirection;
+            }
         }
+        
     }
     
     bool Shoot()

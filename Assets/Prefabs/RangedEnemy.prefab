@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThisEnemy: {fileID: 1867422847328479636}
   Player: {fileID: 0}
+  desiredDistance: 3
   isLookingLeft: 1
   lookingRange: 5
   lookingDirection: {x: 0, y: 0}
