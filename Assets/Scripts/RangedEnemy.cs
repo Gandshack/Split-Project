@@ -31,6 +31,7 @@ public class RangedEnemy : MonoBehaviour
     {
         shoot = new ActionWithCooldown(0.0f, 2f, this.Shoot);
         ThisEnemy = GetComponent<Enemy>();
+        Player=GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
