@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// The player.
     /// </summary>
-    public GameObject Player;
+    private GameObject Player;
 
     /// <summary>
     /// A reference to the player movement.
@@ -22,13 +22,13 @@ public class Enemy : MonoBehaviour
     /// 
     private PlayerMovement PlayerMovement;
 
-    private Countdown sanityCountdown;
+    private Countdown sanityCountdown = new Countdown(0.2f);
 
     private void Start()
     {
+        Player = GameObject.Find("Player");
         hc = GetComponent<HealthComponent>();
         PlayerMovement = Player.GetComponent<PlayerMovement>();
-        sanityCountdown = new Countdown(0.2f);
     }
 
     void Update()

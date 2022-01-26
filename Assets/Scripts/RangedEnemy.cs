@@ -5,16 +5,10 @@ using UnityEngine;
 
 public class RangedEnemy : MonoBehaviour
 {
-
-    /// <summary>
-    /// A reference to self.
-    /// </summary>
-    public Enemy ThisEnemy;
-
     /// <summary>
     /// A reference to the player movement.
     /// </summary>
-    public PlayerMovement Player;
+    private PlayerMovement Player;
     public float desiredDistance=4f;
 
     public bool isLookingLeft=false;
@@ -30,7 +24,6 @@ public class RangedEnemy : MonoBehaviour
     void Start()
     {
         shoot = new ActionWithCooldown(0.0f, 2f, this.Shoot);
-        ThisEnemy = GetComponent<Enemy>();
         Player=GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
@@ -49,7 +42,7 @@ public class RangedEnemy : MonoBehaviour
     void HandlePlayerChecking()
     {
         Rigidbody2D rbP = Player.gameObject.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbE = ThisEnemy.gameObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbE = gameObject.GetComponent<Rigidbody2D>();
         Vector2 posP = rbP.position;
         Vector2 posE = shootLocation.position;
         if ((posP - posE).magnitude < lookingRange && (posP - posE).normalized.x * lookingDirection.x > 0)
