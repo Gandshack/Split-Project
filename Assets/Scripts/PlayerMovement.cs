@@ -24,14 +24,13 @@ public class PlayerMovement : MonoBehaviour
 
     // Touching detection
     public bool isGrounded = false;
-    public RectTransform isGroundedChecker;
     public bool isLefted = false;
-    public RectTransform isLeftedChecker;
     public bool isRighted = false;
-    public RectTransform isRightedChecker;
     public LayerMask groundLayer;
 
     public bool SlopeLeft = false;
+    public bool SlopeRight = false;
+
 
     private Camera playerCamera;
     public LayerMask enemy;
@@ -42,8 +41,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool WeaponOut = true;
 
-    private PlayerMovement player;
     private Rigidbody2D playerBody;
+    private BoxCollider2D playerCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +51,8 @@ public class PlayerMovement : MonoBehaviour
         punchAction = new ActionWithCooldown(0.0f, 0.5f, this.Punch);
 
         playerBody = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
         playerCamera = Camera.main;
-        player = GetComponent<PlayerMovement>();
 
         sanityHeal = new Countdown(0.1f);
     }
@@ -129,40 +128,34 @@ public class PlayerMovement : MonoBehaviour
 
     bool OnGround()
     {
-        Rect r = isGroundedChecker.rect;
-        float y = isGroundedChecker.position.y;
-        float x1 = isGroundedChecker.position.x - r.size.x / 2;
-        float x2 = isGroundedChecker.position.x + r.size.x / 2;
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(x1, y), new Vector2(0, -1), 0.05f, groundLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(x2, y), new Vector2(0, -1), 0.05f, groundLayer);
-         return hit || hit2;
+        Bounds r = playerCollider.bounds;
+        Vector2 pos = r.center - r.extents;
+        RaycastHit2D hit = Physics2D.Raycast(pos, new Vector2(0, -1), 0.05f, groundLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(pos + new Vector2(2*r.extents.x, 0), new Vector2(0, -1), 0.05f, groundLayer);
+        return hit || hit2;
+    }
+
+    bool TouchingInDir(Vector2 dir)
+    {
+        Bounds r = playerCollider.bounds;
+        RaycastHit2D hit = Physics2D.BoxCast(r.center, r.size, 0, dir, 0.05f, groundLayer);
+        return hit;
     }
 
     bool IsSlopeLeft()
     {
-        Rect r = isGroundedChecker.rect;
-        float y1 = isGroundedChecker.position.y;
-        float y2 = isGroundedChecker.position.y + r.size.x / 2;
-        float x = isGroundedChecker.position.x - r.size.x / 2;
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(x, y1), new Vector2(-1, 0), 0.05f, groundLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(x, y2), new Vector2(-1, 0), 0.05f, groundLayer);
-
-        /*if (hit)
-        {
-            Debug.Log(hit.distance);
-        }
-        else
-        {
-            Debug.Log("No on 1");
-        }
-        if (hit2)
-        {
-            Debug.Log(hit2.distance);
-        }
-        else
-        {
-            Debug.Log("No on 2");
-        }*/
+        Bounds r = playerCollider.bounds;
+        Vector2 pos = r.center - r.extents;
+        RaycastHit2D hit = Physics2D.Raycast(pos, new Vector2(-1, 0), 0.05f, groundLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(pos+new Vector2(0, r.extents.y), new Vector2(-1, 0), 0.05f, groundLayer);
+        return hit && !hit2;
+    }
+    bool IsSlopeRight()
+    {
+        Bounds r = playerCollider.bounds;
+        Vector2 pos = r.center + r.extents;
+        RaycastHit2D hit = Physics2D.Raycast(pos - new Vector2(0, 2*r.extents.y), new Vector2(1, 0), 0.05f, groundLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast(pos - new Vector2(0, r.extents.y), new Vector2(1, 0), 0.05f, groundLayer);
         return hit && !hit2;
     }
 
@@ -172,10 +165,12 @@ public class PlayerMovement : MonoBehaviour
         punchOrigin.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         // Determine whether the player is touching something
         //onSlope = OnSlope();
-        isGrounded = OnGround();
-        isLefted = CheckIfSided(isLeftedChecker);
-        isRighted = CheckIfSided(isRightedChecker);
+        isGrounded = TouchingInDir(Vector2.down);
+        isLefted = TouchingInDir(Vector2.left);
+        isRighted = TouchingInDir(Vector2.right);
         SlopeLeft = IsSlopeLeft();
+        SlopeRight = IsSlopeRight();
+
 
         if ((Input.GetAxisRaw("Vertical") > 0) ^ Input.GetKey(KeyCode.Space))
         {
@@ -203,6 +198,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0 &&(!isRighted || isGrounded))
         {
             Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
+            if (SlopeRight && isGrounded)
+            {
+                velocity.y = velocity.x;
+                velocity.x = 0;
+            }
             playerBody.AddForce(1000 * velocity);
         }
 
@@ -221,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
             WeaponOut=!WeaponOut;
         }
         // Crouching
-        if (player._isSneaking() == true)
+        if (_isSneaking() == true)
         {
             speed = 1f;
             maxSpeed = 2f;
