@@ -22,7 +22,8 @@ public class Enemy : MonoBehaviour
     /// 
     private PlayerMovement PlayerMovement;
 
-    private Countdown sanityCountdown = new Countdown(0.2f);
+    private FloatToIntBank sanityDamageBank = new FloatToIntBank(0.2f);
+
 
     private void Start()
     {
@@ -35,14 +36,13 @@ public class Enemy : MonoBehaviour
     {
         float playerDistance = (Player.transform.position - transform.position).magnitude;
 
-        if (playerDistance < 10)
+        if (playerDistance < 12)
         {
-            sanityCountdown.Proceed((float)(Time.deltaTime / Math.Max(playerDistance, 0.5)));
-
-            if (!sanityCountdown.IsRunning())
+            sanityDamageBank.Deposit((float)(Time.deltaTime / playerDistance));
+            int cash = sanityDamageBank.CashOut();
+            if (cash > 0)
             {
-                PlayerMovement.DamageSanity(1);
-                sanityCountdown.Start();
+                PlayerMovement.DamageSanity(cash);
             }
         }
         if ((PlayerMovement.WeaponOut == true) && playerDistance < 5f)

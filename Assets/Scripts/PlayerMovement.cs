@@ -182,7 +182,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void DamageSanity(float damage)
     {
-        Debug.Log("Sanity!");
         sc.OnDamage((int)damage);
         sanityHeal = new Countdown(3f);
         sanityHeal.Start();
