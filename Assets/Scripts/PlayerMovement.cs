@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        punchOrigin.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
         // Determine whether the player is touching something
 
         if ((Input.GetAxisRaw("Vertical") > 0) ^ Input.GetKey(KeyCode.Space))
@@ -109,43 +109,42 @@ public class PlayerMovement : MonoBehaviour
         jumpAction.Proceed(Time.deltaTime);
 
         // Player controlled horizontal force
-        if (Input.GetAxisRaw("Horizontal") < 0 &&(!CTD.isLefted || CTD.isGrounded))
+        if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            Vector2 velocity = new Vector2(-speed * Time.deltaTime, 0);
-            if (CTD.SlopeLeft && CTD.isGrounded)
+            if (!CTD.isLefted || CTD.isGrounded)
             {
-                velocity.y = -velocity.x;
-                velocity.x = 0;
+                Vector2 velocity = new Vector2(-speed * Time.deltaTime, 0);
+                if (CTD.SlopeLeft && CTD.isGrounded)
+                {
+                    velocity.y = -velocity.x;
+                    velocity.x = 0;
+                }
+                playerBody.AddForce(1000 * velocity);
             }
-            playerBody.AddForce(1000 * velocity);
         }
-        if (Input.GetAxisRaw("Horizontal") > 0 &&(!CTD.isRighted || CTD.isGrounded))
+        else if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
-            if (CTD.SlopeRight && CTD.isGrounded)
+            if (!CTD.isRighted || CTD.isGrounded)
             {
-                velocity.y = velocity.x;
-                velocity.x = 0;
+                Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
+                if (CTD.SlopeRight && CTD.isGrounded)
+                {
+                    velocity.y = velocity.x;
+                    velocity.x = 0;
+                }
+                playerBody.AddForce(1000 * velocity);
             }
-            playerBody.AddForce(1000 * velocity);
         }
 
         // Auto-jump up slopes
 
         // Max speed
-        if (playerBody.velocity.x < -maxSpeed)
-        {
-            playerBody.velocity = new Vector2(-maxSpeed, playerBody.velocity.y);
-        }
-        else if (playerBody.velocity.x > maxSpeed)
-        {
-            playerBody.velocity = new Vector2(maxSpeed, playerBody.velocity.y);
-        }
+
         if(Input.GetKeyDown(KeyCode.E)){
             WeaponOut=!WeaponOut;
         }
         // Crouching
-        if (_isSneaking() == true)
+        if (Input.GetAxisRaw("Vertical") < 0)
         {
             speed = 1f;
             maxSpeed = 2f;
@@ -155,6 +154,11 @@ public class PlayerMovement : MonoBehaviour
             speed = 3f;
             maxSpeed = 5f;
         }
+
+        var newXVel = Math.Max(-maxSpeed, playerBody.velocity.x);
+        newXVel = Math.Min(maxSpeed, newXVel);
+        playerBody.velocity = new Vector2(newXVel, playerBody.velocity.y);
+
         sanityHeal.Proceed(Time.deltaTime);
         if (!sanityHeal.IsRunning())
         {
@@ -164,11 +168,6 @@ public class PlayerMovement : MonoBehaviour
             sanityBar.UpdateHealth(sc.GetHealthFraction());
         }
     }
-    public bool _isSneaking()
-    {
-        return Input.GetAxisRaw("Vertical")<0;
-    }
-
 
     public void TakeDamage(float damage)
     {

@@ -35,7 +35,7 @@ public class MeleeEnemy : MonoBehaviour
     void Update()
     {
         hitCooldown.Proceed(Time.deltaTime);
-        if((Vector2.Distance(transform.position, Player.transform.position)<5f)&&!Player._isSneaking())
+        if((Vector2.Distance(transform.position, Player.transform.position)<5f))
         {
             var step= Speed * Time.deltaTime;
             transform.position=Vector2.MoveTowards(transform.position,new Vector2(Player.transform.position.x, transform.position.y),step);
