@@ -19,6 +19,9 @@ namespace Assets.Scripts
         public bool SlopeLeft = false;
         public bool SlopeRight = false;
 
+        public bool EdgeLeft = false;
+        public bool EdgeRight = false;
+
         private Collider2D col;
 
         void Start()
@@ -59,6 +62,22 @@ namespace Assets.Scripts
             return hit && !hit2;
         }
 
+        bool IsEdgeLeft()
+        {
+            Bounds bounds = col.bounds;
+            Vector2 pos = bounds.center - bounds.extents;
+            RaycastHit2D hit = Physics2D.Raycast(pos, new Vector2(0, -1), 0.05f, groundLayer);
+            return !hit;
+        }
+
+        bool IsEdgeRight()
+        {
+            Bounds bounds = col.bounds;
+            Vector2 pos = bounds.center - bounds.extents;
+            RaycastHit2D hit = Physics2D.Raycast(pos + new Vector2(2*bounds.extents.x, 0), new Vector2(0, -1), 0.05f, groundLayer);
+            return !hit;
+        }
+
         void FixedUpdate()
         {
             isGrounded = TouchingInDir(Vector2.down);
@@ -66,6 +85,8 @@ namespace Assets.Scripts
             isRighted = TouchingInDir(Vector2.right);
             SlopeLeft = IsSlopeLeft();
             SlopeRight = IsSlopeRight();
+            EdgeLeft = IsEdgeLeft();
+            EdgeRight = IsEdgeRight();
         }
     }
 }

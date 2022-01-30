@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1867422847328479636}
   - component: {fileID: 1867422847328479637}
   - component: {fileID: 1867422847328479634}
+  - component: {fileID: 8550288952984504540}
   m_Layer: 3
   m_Name: RangedEnemy
   m_TagString: Untagged
@@ -177,13 +178,13 @@ MonoBehaviour:
   desiredDistance: 5
   speed: 3
   isLookingLeft: 1
-  lookingRange: 12
-  lookingDirection: {x: 0, y: 0}
+  lookingRange: 14
   ProjectileLeft: {fileID: 1466991130836567177, guid: 2398a2b02a6718242b10e9fa135a0466, type: 3}
   ProjectileRight: {fileID: 1466991130836567177, guid: 5f5d23c9e4a60dc44a40846b1f780bc6, type: 3}
   projForce: 500
   shootLocationLeft: {fileID: 1867422849250470693}
   shootLocationRight: {fileID: 7082825849001009168}
+  CTD: {fileID: 0}
 --- !u!95 &1867422847328479634
 Animator:
   serializedVersion: 3
@@ -203,6 +204,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8550288952984504540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867422847328479635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807aaf19ca9cfb44d9b39f9d88f05a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  isLefted: 0
+  isRighted: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  SlopeLeft: 0
+  SlopeRight: 0
+  EdgeLeft: 0
+  EdgeRight: 0
 --- !u!1 &1867422849250470690
 GameObject:
   m_ObjectHideFlags: 0
