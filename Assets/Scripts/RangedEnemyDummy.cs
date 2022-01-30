@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedEnemy : MonoBehaviour
+public class RangedEnemyDummy : MonoBehaviour
 {
 
     public Transform ProjectileLeft;
@@ -16,13 +16,19 @@ public class RangedEnemy : MonoBehaviour
 
     private ActionWithCooldown shoot;
 
-    private Enemy ThisEnemy;
+    public Enemy ThisEnemy;
+
+    private Animator ownAnimator;
+
+    //private RangedEnemy bottom;
+
 
     // Start is called before the first frame update
     void Start()
     {
         shoot = new ActionWithCooldown(0.0f, 2f, this.Shoot);
-        ThisEnemy = GetComponent<Enemy>();
+        //bottom = ThisEnemy.GetComponent<RangedEnemy>();
+        ownAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,6 +39,7 @@ public class RangedEnemy : MonoBehaviour
         {
             shoot.Trigger();
         }
+        ownAnimator.SetBool("isLookingLeft", ThisEnemy.isLookingLeft);
     }
 
     bool Shoot()
