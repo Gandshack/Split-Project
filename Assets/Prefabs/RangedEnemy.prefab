@@ -163,6 +163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164612f875745c54db979b04fb892c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CTD: {fileID: 8550288952984504540}
+  isLookingLeft: 0
+  desiredDistance: 5
+  desireRange: 0.5
+  speed: 3
+  lookingRange: 14
 --- !u!114 &1867422847328479637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,16 +181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c253d7055a42cea45b7a7aa51473556c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desiredDistance: 5
-  speed: 3
-  isLookingLeft: 1
-  lookingRange: 14
   ProjectileLeft: {fileID: 1466991130836567177, guid: 2398a2b02a6718242b10e9fa135a0466, type: 3}
   ProjectileRight: {fileID: 1466991130836567177, guid: 5f5d23c9e4a60dc44a40846b1f780bc6, type: 3}
   projForce: 500
   shootLocationLeft: {fileID: 1867422849250470693}
   shootLocationRight: {fileID: 7082825849001009168}
-  CTD: {fileID: 0}
 --- !u!95 &1867422847328479634
 Animator:
   serializedVersion: 3

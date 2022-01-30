@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Pull()
     {
-        playerBody.AddForce(Vector2.left * 10f);
+        playerBody.AddForce(Vector2.left * 50f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6879656066598693787}
   - component: {fileID: 6879656066598693782}
   - component: {fileID: 6879656066598693780}
+  - component: {fileID: 8616801238912314751}
   m_Layer: 3
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -160,7 +161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164612f875745c54db979b04fb892c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  CTD: {fileID: 8616801238912314751}
+  isLookingLeft: 0
+  desiredDistance: 1
+  desireRange: 0.5
+  speed: 1
+  lookingRange: 14
 --- !u!95 &6879656066598693782
 Animator:
   serializedVersion: 3
@@ -192,9 +198,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d429657dc2b9194a97a1b4248cd4e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisEnemy: {fileID: 6879656066598693787}
-  Player: {fileID: 0}
-  Speed: 1
-  CoolDown: 1
-  CoolDownLeft: 0
   Damage: 10
+--- !u!114 &8616801238912314751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879656066598693790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807aaf19ca9cfb44d9b39f9d88f05a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  isLefted: 0
+  isRighted: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  SlopeLeft: 0
+  SlopeRight: 0
+  EdgeLeft: 0
+  EdgeRight: 0

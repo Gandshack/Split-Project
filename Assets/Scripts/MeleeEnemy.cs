@@ -10,10 +10,7 @@ public class MeleeEnemy : MonoBehaviour
     /// </summary>
     private PlayerMovement Player;
 
-    /// <summary>
-    /// The speed at which the enemy moves.
-    /// </summary>
-    public float Speed=1f;
+    private Enemy ThisEnemy;
 
     public Countdown hitCooldown = new Countdown(1.0f);
 
@@ -22,37 +19,38 @@ public class MeleeEnemy : MonoBehaviour
     /// </summary>
     public float Damage = 10f;
 
-    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
         Player=GameObject.Find("Player").GetComponent<PlayerMovement>();
+        ThisEnemy = GetComponent<Enemy>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         hitCooldown.Proceed(Time.deltaTime);
         if((Vector2.Distance(transform.position, Player.transform.position)<5f))
         {
-            var step= Speed * Time.deltaTime;
-            transform.position=Vector2.MoveTowards(transform.position,new Vector2(Player.transform.position.x, transform.position.y),step);
+            //var step= ThisEnemy.speed * Time.deltaTime;
+            //transform.position=Vector2.MoveTowards(transform.position,new Vector2(Player.transform.position.x, transform.position.y),step);
             if(!hitCooldown.IsRunning())
             {
                 Hit();
                 hitCooldown.Start();
             }
         }
-        if(Mathf.Abs(transform.position.x- Player.transform.position.x)<1f&& Player.transform.position.y-transform.position.y<2f)
+        if(Mathf.Abs(transform.position.x- Player.transform.position.x)<2f&& Player.transform.position.y-transform.position.y<4f)
         {
-            anim.SetFloat("Speed", 1);
+            ThisEnemy.Animator().SetBool("PlayerHere", true);
             Player.Pull();
+            ThisEnemy.desiredDistance = 3;
         }
         else
         {
-            anim.SetFloat("Speed", 0);
+            ThisEnemy.Animator().SetBool("PlayerHere", false);
+            ThisEnemy.desiredDistance = 1;
         }
     }
 
