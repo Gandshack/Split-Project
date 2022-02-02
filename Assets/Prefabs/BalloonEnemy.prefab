@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 6879656066598693786}
   - component: {fileID: 6879656066598693783}
   - component: {fileID: 6879656066598693782}
-  - component: {fileID: 6879656066598693780}
   - component: {fileID: 8616801238912314751}
-  - component: {fileID: 4784130021950207080}
+  - component: {fileID: 4191791846665210306}
+  - component: {fileID: 3349393404721089481}
   m_Layer: 3
-  m_Name: MeleeEnemy
+  m_Name: BalloonEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1721379292532392087, guid: 3edc7493799f1eb40b240dc6bc2a33f0, type: 3}
+  m_Sprite: {fileID: 4012848131331170427, guid: 176dcf8f6ec959b4197b7d8590cd2af9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.628049, y: 3.152439}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -106,8 +106,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0853659, y: 0.902439}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 2.628049, y: 3.152439}
+    newSize: {x: 2.628049, y: 3.152439}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -159,7 +159,7 @@ Animator:
   m_GameObject: {fileID: 6879656066598693790}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8f097b253ca7c8243910a48891f63518, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -168,19 +168,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6879656066598693780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6879656066598693790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d429657dc2b9194a97a1b4248cd4e56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 10
 --- !u!114 &8616801238912314751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +183,7 @@ MonoBehaviour:
   isGrounded: 0
   isLefted: 0
   isRighted: 0
+  isCeiled: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -203,7 +191,7 @@ MonoBehaviour:
   SlopeRight: 0
   EdgeLeft: 0
   EdgeRight: 0
---- !u!114 &4784130021950207080
+--- !u!114 &4191791846665210306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,12 +200,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6879656066598693790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf50bd53ab733b940b909309f88a1c63, type: 3}
+  m_Script: {fileID: 11500000, guid: ce5876c417909ec4fa512402ab12c10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3349393404721089481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879656066598693790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c317ee0c3ef8fea4688168448f17cc98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CTD: {fileID: 8616801238912314751}
   isLookingLeft: 0
-  desiredDistance: 1
+  desiredDistance: 5
   desireRange: 0.5
-  speed: 1
+  speed: 3
   lookingRange: 14

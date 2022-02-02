@@ -111,36 +111,41 @@ public class PlayerMovement : MonoBehaviour
         // Player controlled horizontal force
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            if (!CTD.isLefted || CTD.isGrounded)
+            Vector2 velocity = new Vector2(0, 0);
+            if (CTD.SlopeLeft)
             {
-                Vector2 velocity = new Vector2(-speed * Time.deltaTime, 0);
-                if (CTD.SlopeLeft && CTD.isGrounded)
-                {
-                    velocity.y = -velocity.x;
-                    velocity.x = 0;
-                }
-                playerBody.AddForce(1000 * velocity);
+                velocity = new Vector2(-speed * Time.deltaTime, 0);
+                velocity.y = -velocity.x;
+                velocity.x = 0;
             }
+            else if (!CTD.isLefted)
+            {
+                velocity = new Vector2(-speed * Time.deltaTime, 0);
+            }
+            playerBody.AddForce(1000 * velocity);
         }
         else if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            if (!CTD.isRighted || CTD.isGrounded)
+            Vector2 velocity = new Vector2(0, 0);
+            if (CTD.SlopeRight)
             {
-                Vector2 velocity = new Vector2(speed * Time.deltaTime, 0);
-                if (CTD.SlopeRight && CTD.isGrounded)
-                {
-                    velocity.y = velocity.x;
-                    velocity.x = 0;
-                }
-                playerBody.AddForce(1000 * velocity);
+                velocity = new Vector2(speed * Time.deltaTime, 0);
+                velocity.y = velocity.x;
+                velocity.x = 0;
             }
+            else if (!CTD.isRighted)
+            {
+                velocity = new Vector2(speed * Time.deltaTime, 0);
+            }
+            playerBody.AddForce(1000 * velocity);
+
         }
 
         // Auto-jump up slopes
 
         // Max speed
 
-        if(Input.GetKeyDown(KeyCode.E)){
+        if (Input.GetKeyDown(KeyCode.E)){
             WeaponOut=!WeaponOut;
         }
         // Crouching

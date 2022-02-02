@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 1867422847328479625}
   - component: {fileID: 1867422847328479638}
   - component: {fileID: 1867422847328479639}
-  - component: {fileID: 1867422847328479636}
   - component: {fileID: 1867422847328479637}
   - component: {fileID: 1867422847328479634}
   - component: {fileID: 8550288952984504540}
+  - component: {fileID: 876872906933397297}
   m_Layer: 3
   m_Name: RangedEnemy
   m_TagString: Untagged
@@ -151,24 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaximumHealth_Unity: 60
---- !u!114 &1867422847328479636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867422847328479635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 164612f875745c54db979b04fb892c14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CTD: {fileID: 8550288952984504540}
-  isLookingLeft: 0
-  desiredDistance: 5
-  desireRange: 0.5
-  speed: 3
-  lookingRange: 14
 --- !u!114 &1867422847328479637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +209,24 @@ MonoBehaviour:
   SlopeRight: 0
   EdgeLeft: 0
   EdgeRight: 0
+--- !u!114 &876872906933397297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867422847328479635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf50bd53ab733b940b909309f88a1c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CTD: {fileID: 8550288952984504540}
+  isLookingLeft: 0
+  desiredDistance: 5
+  desireRange: 0.5
+  speed: 3
+  lookingRange: 14
 --- !u!1 &1867422849250470690
 GameObject:
   m_ObjectHideFlags: 0

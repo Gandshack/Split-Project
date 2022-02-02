@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// The player.
     /// </summary>
-    private GameObject Player;
+    protected GameObject Player;
 
     /// <summary>
     /// A reference to the player movement.
@@ -28,8 +28,8 @@ public class Enemy : MonoBehaviour
     public CollisionTypeDetect CTD;
     public bool isLookingLeft = false;
 
-    private Vector2 startPos;
-    private bool startingLeft;
+    protected Vector2 startPos;
+    protected bool startingLeft;
 
     public float desiredDistance = 5f;
     public float desireRange = 0.5f;
@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
-    void UpdateDirection(bool lookingLeft)
+    protected void UpdateDirection(bool lookingLeft)
     {
         isLookingLeft = lookingLeft;
         anim.SetBool("isLookingLeft", isLookingLeft);
@@ -93,51 +93,9 @@ public class Enemy : MonoBehaviour
         return Vector2.right;
     }
 
-    public void Move()
+    public virtual void Move()
     {
-        Rigidbody2D rbP = Player.gameObject.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbE = gameObject.GetComponent<Rigidbody2D>();
-        Vector2 posP = rbP.position;
-        Vector2 posE = rbE.position;
-        if (CTD.EdgeLeft && rbE.velocity.x < 0 || CTD.EdgeRight && rbE.velocity.x > 0)
-        {
-            rbE.velocity = new Vector2(0, rbE.velocity.y);
-        }
-        if (Vector2.Distance(posP, posE) < lookingRange)
-        {
-            if ((posP - posE).normalized.x * LookingDirection().x < 0)
-            {
-                UpdateDirection(!isLookingLeft);
-            }
-            if (Vector2.Distance(posE, posP) < desiredDistance - desireRange)
-            {
-                rbE.velocity = -LookingDirection() * speed + new Vector2(0, rbE.velocity.y);
-            }
-            else if (Vector2.Distance(posE, posP) > desiredDistance + desireRange)
-            {
-                rbE.velocity = LookingDirection() * speed + new Vector2(0, rbE.velocity.y);
-            }
-        }
-        else if ((posE - startPos).normalized.x < -0.5)
-        {
-            UpdateDirection(false);
-            rbE.velocity = LookingDirection() * speed + new Vector2(0, rbE.velocity.y);
-        }
-        else if ((posE - startPos).normalized.x > 0.5)
-        {
-            UpdateDirection(true);
-            rbE.velocity = LookingDirection() * speed + new Vector2(0, rbE.velocity.y);
-        }
-        else
-        {
-            UpdateDirection(startingLeft);
-            rbE.velocity = new Vector2(0, rbE.velocity.y);
-        }
-        // If at an edge, don't move off it
-        if (CTD.EdgeLeft && rbE.velocity.x < 0 || CTD.EdgeRight && rbE.velocity.x > 0)
-        {
-            rbE.velocity = new Vector2(0, rbE.velocity.y);
-        }
+        
     }
 
     public bool PlayerInRange()
