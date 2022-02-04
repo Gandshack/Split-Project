@@ -146,8 +146,6 @@ namespace Assets.Scripts
                 RaycastHit2D r = TouchingInDir(new Vector2(-1, -1));
                 if (r)
                 {
-                    Debug.Log("DL");
-                    Debug.Log(r.normal);
                     if (r.normal.x != 0)
                     {
                         isLefted = true;
@@ -163,8 +161,6 @@ namespace Assets.Scripts
                 RaycastHit2D r = TouchingInDir(new Vector2(1, -1));
                 if (r)
                 {
-                    Debug.Log("DR");
-                    Debug.Log(r.normal);
                     if (r.normal.x != 0)
                     {
                         isRighted = true;
@@ -180,8 +176,6 @@ namespace Assets.Scripts
                 RaycastHit2D r = TouchingInDir(new Vector2(-1, 1));
                 if (r)
                 {
-                    Debug.Log("UL");
-                    Debug.Log(r.normal);
                     if (r.normal.x != 0)
                     {
                         isLefted = true;
@@ -197,8 +191,6 @@ namespace Assets.Scripts
                 RaycastHit2D r = TouchingInDir(new Vector2(1, 1));
                 if (r)
                 {
-                    Debug.Log("UR");
-                    Debug.Log(r.normal);
                     if (r.normal.x != 0)
                     {
                         isRighted = true;

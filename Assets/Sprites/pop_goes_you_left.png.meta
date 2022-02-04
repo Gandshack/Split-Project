@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: bc376a19d87433742add7fac2b59d365
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7062213240962864987
+    second: pop_goes_you_left_0
+  - first:
+      213: -1295808797233924347
+    second: pop_goes_you_left_1
+  - first:
+      213: -9215345631904259896
+    second: pop_goes_you_left_2
+  - first:
+      213: 2772435756646172293
+    second: pop_goes_you_left_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,7 +101,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: pop_goes_you_left_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 258.5
+        width: 215.5
+        height: 258.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a8295c797afdfd90800000000000000
+      internalID: -7062213240962864987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pop_goes_you_left_1
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 258.5
+        width: 215.5
+        height: 258.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 507bb00b3cc540ee0800000000000000
+      internalID: -1295808797233924347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pop_goes_you_left_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.5
+        width: 215.5
+        height: 258.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c026e709f38c1080800000000000000
+      internalID: -9215345631904259896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pop_goes_you_left_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 0.5
+        width: 215.5
+        height: 258.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5868c75b1aba97620800000000000000
+      internalID: 2772435756646172293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
