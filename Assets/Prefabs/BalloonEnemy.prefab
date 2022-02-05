@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 6879656066598693782}
   - component: {fileID: 8616801238912314751}
   - component: {fileID: 4191791846665210306}
-  - component: {fileID: 3349393404721089481}
+  - component: {fileID: 2331110435346771827}
   m_Layer: 0
   m_Name: BalloonEnemy
   m_TagString: Untagged
@@ -319,22 +319,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5876c417909ec4fa512402ab12c10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diving: 0
---- !u!114 &3349393404721089481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6879656066598693790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c317ee0c3ef8fea4688168448f17cc98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   CTD: {fileID: 8616801238912314751}
   isLookingLeft: 0
   desiredDistance: 5
   desireRange: 0.5
   speed: 3
   lookingRange: 14
+  diving: 0
+  rising: 0
+--- !u!61 &2331110435346771827
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879656066598693790}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.080415726, y: -1.0101078}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.628049, y: 3.152439}
+    newSize: {x: 2.628049, y: 3.152439}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24030876, y: 0.76832247}
+  m_EdgeRadius: 0

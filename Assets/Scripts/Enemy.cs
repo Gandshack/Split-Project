@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
         return anim;
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         float playerDistance = (Player.transform.position - transform.position).magnitude;
 
@@ -78,10 +78,6 @@ public class Enemy : MonoBehaviour
             {
                 PlayerMovement.DamageSanity(cash);
             }
-        }
-        if ((PlayerMovement.WeaponOut == true) && playerDistance < 5f)
-        {
-            TakeDamage(100/playerDistance * Time.deltaTime);
         }
 
         Move();

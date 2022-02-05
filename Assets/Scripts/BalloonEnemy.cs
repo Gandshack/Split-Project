@@ -7,23 +7,36 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    class BalloonEnemy : MonoBehaviour
+    class BalloonEnemy : FloatingEnemy
     {
-
-        Enemy ThisEnemy;
-
         public bool diving = false;
+        public bool rising = false;
 
-        private void Start()
+        public override void Move()
         {
-            ThisEnemy = GetComponent<Enemy>();
-        }
-
-        private void Update()
-        {
-            if (ThisEnemy.PlayerInRange() && ThisEnemy.PlayerBelow())
+            if (PlayerBelow() && PlayerInRange())
             {
                 Dive();
+            }
+            base.Move();
+            if (diving && !rising)
+            {
+                Rigidbody2D r = gameObject.GetComponent<Rigidbody2D>();
+                r.AddForce(Vector2.down * 1000f*Time.deltaTime);
+            }
+            else if (rising && !diving)
+            {
+                Rigidbody2D r = gameObject.GetComponent<Rigidbody2D>();
+                r.AddForce(Vector2.up * 1000f*Time.deltaTime);
+            }
+            if (CTD.IsGrounded)
+            {
+                diving = false;
+                rising = true;
+            }
+            if (CTD.IsCeiled)
+            {
+                rising = false;
             }
         }
 

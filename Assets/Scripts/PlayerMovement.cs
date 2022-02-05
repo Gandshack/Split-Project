@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool Jump()
     {
-        if (CTD.isGrounded)
+        if (CTD.IsGrounded)
         {
             playerBody.velocity = new Vector2(playerBody.velocity.x, 0);
             Vector2 vel2 = new Vector2(0, jumpSpeed);
@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y = -velocity.x;
                 velocity.x = 0;
             }
-            else if (!CTD.isLefted)
+            else if (!CTD.IsLefted)
             {
                 velocity = new Vector2(-speed * Time.deltaTime, 0);
             }
@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y = velocity.x;
                 velocity.x = 0;
             }
-            else if (!CTD.isRighted)
+            else if (!CTD.IsRighted)
             {
                 velocity = new Vector2(speed * Time.deltaTime, 0);
             }
