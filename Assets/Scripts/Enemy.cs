@@ -52,6 +52,15 @@ public class Enemy : MonoBehaviour
         UpdateDirection(isLookingLeft);
     }
 
+    public bool PlayerBelow()
+    {
+        Rigidbody2D rbP = Player.gameObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbE = gameObject.GetComponent<Rigidbody2D>();
+        Vector2 posP = rbP.position;
+        Vector2 posE = rbE.position;
+        return Math.Abs(posP.x - posE.x) < 1 && posP.y < posE.y - 2;
+    }
+
     public Animator Animator()
     {
         return anim;

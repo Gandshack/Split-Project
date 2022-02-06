@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     public ActionWithCooldown jumpAction;
     public ActionWithCooldown punchAction;
 
+    public Countdown invulTime;
+
     public bool WeaponOut = true;
 
     private Rigidbody2D playerBody;
@@ -46,18 +48,19 @@ public class PlayerMovement : MonoBehaviour
         playerCamera = Camera.main;
 
         sanityHeal = new Countdown(0.1f);
+        invulTime = new Countdown(0.5f);
     }
 
     bool Punch()
     {
-        punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
+        /*punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
         Vector2 mousePos = Input.mousePosition;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, punchOrigin.forward, 1, enemy);
         if (hit)
         {
             Debug.Log(hit.transform.name);
             hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(20);
-        }
+        }*/
         return true;
     }
 
@@ -172,28 +175,34 @@ public class PlayerMovement : MonoBehaviour
             sanityHeal.Start();
             sanityBar.UpdateHealth(sc.GetHealthFraction());
         }
+
+        invulTime.Proceed(Time.deltaTime);
     }
 
     public void TakeDamage(float damage)
     {
-        hc.OnDamage((int)damage);
-        healthBar.UpdateHealth(hc.GetHealthFraction());
-        if (hc.IsDead())
+        if (!invulTime.IsRunning())
         {
-            Die();
+            hc.OnDamage((int)damage);
+            healthBar.UpdateHealth(hc.GetHealthFraction());
+            if (hc.IsDead())
+            {
+                Die();
+            }
+            invulTime.Start();
         }
     }
 
     public void DamageSanity(float damage)
     {
-        sc.OnDamage((int)damage);
+        /*sc.OnDamage((int)damage);
         sanityHeal = new Countdown(3f);
         sanityHeal.Start();
         sanityBar.UpdateHealth(sc.GetHealthFraction());
         if (sc.IsDead())
         {
             Die();
-        }
+        }*/
     }
 
     public void Die()
