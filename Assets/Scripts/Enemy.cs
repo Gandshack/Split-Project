@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
 
     private Animator anim;
 
-    private void Start()
+    protected virtual void Start()
     {
         Player = GameObject.Find("Player");
         hc = GetComponent<HealthComponent>();
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
         Rigidbody2D rbE = gameObject.GetComponent<Rigidbody2D>();
         Vector2 posP = rbP.position;
         Vector2 posE = rbE.position;
-        return Math.Abs(posP.x - posE.x) < 1 && posP.y < posE.y - 2;
+        return Math.Abs(posP.x - posE.x) < 0.5 && posP.y < posE.y - 2;
     }
 
     public Animator Animator()

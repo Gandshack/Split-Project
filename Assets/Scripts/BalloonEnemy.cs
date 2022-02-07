@@ -12,13 +12,39 @@ namespace Assets.Scripts
         public bool diving = false;
         public bool rising = false;
 
+        public AudioSource diveSound;
+
+        protected override void Start()
+        {
+            base.Start();
+            diveSound = GetComponent<AudioSource>();
+        }
+
         public override void Move()
         {
-            if (PlayerBelow() && PlayerInRange())
+            if (!diving && PlayerBelow() && PlayerInRange())
             {
                 Dive();
             }
-            base.Move();
+            Rigidbody2D rbE = gameObject.GetComponent<Rigidbody2D>();
+
+            // reverse at walls
+            if (CTD.IsLefted && rbE.velocity.x <= 0 || CTD.IsRighted && rbE.velocity.x >= 0)
+            {
+                UpdateDirection(!isLookingLeft);
+            }
+            if (!diving && !rising)
+            {
+                rbE.velocity = LookingDirection() * speed + new Vector2(0, rbE.velocity.y);
+            }
+            else
+            {
+                rbE.velocity = new Vector2(0, rbE.velocity.y);
+            }
+            if (!CTD.IsCeiled)
+            {
+                rbE.AddForce(new Vector2(0, 200 * Time.deltaTime * speed));
+            }
             if (diving && !rising)
             {
                 Rigidbody2D r = gameObject.GetComponent<Rigidbody2D>();
@@ -43,6 +69,7 @@ namespace Assets.Scripts
         private void Dive()
         {
             diving = true;
+            diveSound.Play();
         }
     }
 }

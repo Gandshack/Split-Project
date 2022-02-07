@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D playerBody;
 
+    public AudioSource punchSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         playerBody = GetComponent<Rigidbody2D>();
         CTD = GetComponent<CollisionTypeDetect>();
         playerCamera = Camera.main;
+        punchSound = GetComponent<AudioSource>();
 
         sanityHeal = new Countdown(0.1f);
         invulTime = new Countdown(0.5f);
@@ -53,14 +56,15 @@ public class PlayerMovement : MonoBehaviour
 
     bool Punch()
     {
-        /*punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
+        punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
         Vector2 mousePos = Input.mousePosition;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, punchOrigin.forward, 1, enemy);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, punchOrigin.forward, 2, enemy);
         if (hit)
         {
+            punchSound.Play();
             Debug.Log(hit.transform.name);
             hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(20);
-        }*/
+        }
         return true;
     }
 
