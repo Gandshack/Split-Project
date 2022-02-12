@@ -1,3 +1,4 @@
+using Assets.Scripts.Saving;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,5 +24,10 @@ public class LoadGameButtonScript : MonoBehaviour
     public void ChangeQuit()
     {
         Application.Quit();
+    }
+
+    public void ClearSave()
+    {
+        DataService.Instance.ClearSave();
     }
 }

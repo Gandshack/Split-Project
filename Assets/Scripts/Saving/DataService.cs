@@ -73,8 +73,8 @@ namespace Assets.Scripts.Saving
 			if (scene.name == "Test level")
             {
 				Load();
+				Save();
 			}
-			Save();
 		}
 
 		public void Save()
@@ -103,13 +103,16 @@ namespace Assets.Scripts.Saving
 			Camera.position = new Vector3(Player.position.x, Player.position.y, Camera.position.z);
 			foreach (Transform t in GameObject.Find("Enemies").transform)
 			{
-				Enemy e = t.GetComponent<Enemy>();
-				string name = e.GetUniqueName();
-				if (!enemies.Contains(name))
-                {
-					t.gameObject.SetActive(false);
-                }
-				e.ReturnToStart();
+				if (t.gameObject.activeInHierarchy)
+				{
+					Enemy e = t.GetComponent<Enemy>();
+					string name = e.GetUniqueName();
+					if (!enemies.Contains(name))
+					{
+						t.gameObject.SetActive(false);
+					}
+					e.ReturnToStart();
+				}
 			}
 		}
 
@@ -123,8 +126,11 @@ namespace Assets.Scripts.Saving
 			HashSet<string> enemies = new HashSet<string>();
 			foreach (Transform t in GameObject.Find("Enemies").transform)
             {
-				enemies.Add(t.GetComponent<Enemy>().GetUniqueName());
-            }
+				if (t.gameObject.activeInHierarchy)
+                {
+					enemies.Add(t.GetComponent<Enemy>().GetUniqueName());
+				}
+			}
 			return enemies;
         }
 	}

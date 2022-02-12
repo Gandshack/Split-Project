@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -16,6 +17,7 @@ namespace Assets.Scripts
         void Start()
         {
             menu = transform.Find("Menu");
+            Time.timeScale = 1;
             paused = false;
             menu.gameObject.SetActive(false);
         }
@@ -32,6 +34,20 @@ namespace Assets.Scripts
             Time.timeScale = 0;
             paused = true;
             menu.gameObject.SetActive(true);
+        }
+
+        public void Load()
+        {
+            SceneManager.LoadScene("Test level");
+        }
+
+        public void Save()
+        {
+            DataService.Instance.Save();
+        }
+        public void ClearSave()
+        {
+            DataService.Instance.ClearSave();
         }
 
         void Update()
