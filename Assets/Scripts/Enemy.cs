@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
 
     public float lookingRange = 14f;
 
+    private DamageFlash flashComp;
+
     private Animator anim;
 
     protected virtual void Start()
@@ -49,6 +51,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         startPos = transform.position;
         startingLeft = isLookingLeft;
+        flashComp = GetComponent<DamageFlash>();
         UpdateDirection(isLookingLeft);
     }
 
@@ -114,6 +117,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        flashComp.Do();
         hc.OnDamage((int)damage);
         if(hc.IsDead()){
             Die();

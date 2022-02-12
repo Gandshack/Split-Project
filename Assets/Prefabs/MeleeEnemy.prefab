@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6879656066598693780}
   - component: {fileID: 8616801238912314751}
   - component: {fileID: 4784130021950207080}
+  - component: {fileID: 1533807904815295987}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Untagged
@@ -194,17 +195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807aaf19ca9cfb44d9b39f9d88f05a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
-  isLefted: 0
-  isRighted: 0
-  isCeiled: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  SlopeLeft: 0
-  SlopeRight: 0
-  EdgeLeft: 0
-  EdgeRight: 0
 --- !u!114 &4784130021950207080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +216,18 @@ MonoBehaviour:
   desireRange: 0.5
   speed: 1
   lookingRange: 14
+--- !u!114 &1533807904815295987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879656066598693790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98147f8fc2693540bea26bdc92a61cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8043161976568531474
 GameObject:
   m_ObjectHideFlags: 0

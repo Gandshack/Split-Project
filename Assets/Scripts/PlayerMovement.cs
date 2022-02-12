@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D playerBody;
 
+    private DamageFlash flashComp;
+
     public AudioSource punchSound;
 
     // Start is called before the first frame update
@@ -49,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         CTD = GetComponent<CollisionTypeDetect>();
         playerCamera = Camera.main;
         punchSound = GetComponent<AudioSource>();
+        flashComp = GetComponent<DamageFlash>();
 
         sanityHeal = new Countdown(0.1f);
         invulTime = new Countdown(0.5f);
@@ -187,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!invulTime.IsRunning())
         {
+            flashComp.Do();
             hc.OnDamage((int)damage);
             healthBar.UpdateHealth(hc.GetHealthFraction());
             if (hc.IsDead())
