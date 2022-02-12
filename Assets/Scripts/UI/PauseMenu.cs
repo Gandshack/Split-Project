@@ -18,9 +18,15 @@ namespace Assets.Scripts
             menu = transform.Find("Menu");
         }
 
+        public void Resume()
+        {
+            Time.timeScale = 1;
+            menu.gameObject.SetActive(false);
+        }
+
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.P)||Input.GetKeyDown(KeyCode.Escape))
             {
                 if (paused)
                 {
