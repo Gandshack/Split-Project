@@ -63,18 +63,14 @@ public class Enemy : MonoBehaviour
         Vector2 posE = rbE.position;
         return Math.Abs(posP.x - posE.x) < 0.5 && posP.y < posE.y - 2;
     }
-
-    public int PlayerDir(float leeway)
+    public int Dir(Vector2 pos, float leeway)
     {
-        Rigidbody2D rbP = Player.GetComponent<Rigidbody2D>();
         Rigidbody2D rbE = gameObject.GetComponent<Rigidbody2D>();
-        Vector2 posP = rbP.position;
-        Vector2 posE = rbE.position;
-        if (rbE.position.x < rbP.position.x - leeway)
+        if (rbE.position.x < pos.x - leeway)
         {
             return -1;
         }
-        else if (rbE.position.x > rbP.position.x + leeway)
+        else if (rbE.position.x > pos.x + leeway)
         {
             return 1;
         }
@@ -82,6 +78,16 @@ public class Enemy : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    public int PlayerDir(float leeway)
+    {
+        Rigidbody2D rbP = Player.GetComponent<Rigidbody2D>();
+        return Dir(rbP.position, leeway);
+    }
+    public int StartingDir(float leeway)
+    {
+        return Dir(startPos, leeway);
     }
 
     public Animator Animator()

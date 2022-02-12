@@ -62,6 +62,16 @@ namespace Assets.Scripts
             }
             else if (rising && !diving)
             {
+                int pd = StartingDir(0.01f);
+                if (pd != 0)
+                {
+                    UpdateDirection(pd == 1);
+                    rbE.velocity = LookingDirection() * speed + new Vector2(0, rbE.velocity.y);
+                }
+                else
+                {
+                    rbE.velocity = new Vector2(0, rbE.velocity.y);
+                }
                 Rigidbody2D r = gameObject.GetComponent<Rigidbody2D>();
                 r.AddForce(Vector2.up * 1000f*Time.deltaTime);
             }
