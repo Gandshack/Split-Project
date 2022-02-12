@@ -14,14 +14,23 @@ namespace Assets.Scripts
 
         void Start()
         {
-            paused = false;
             menu = transform.Find("Menu");
+            paused = false;
+            menu.gameObject.SetActive(false);
         }
 
         public void Resume()
         {
             Time.timeScale = 1;
+            paused = false;
             menu.gameObject.SetActive(false);
+        }
+
+        public void Pause()
+        {
+            Time.timeScale = 0;
+            paused = true;
+            menu.gameObject.SetActive(true);
         }
 
         void Update()
@@ -30,15 +39,11 @@ namespace Assets.Scripts
             {
                 if (paused)
                 {
-                    Time.timeScale = 1;
-                    paused = false;
-                    menu.gameObject.SetActive(false);
+                    Resume();
                 }
                 else
                 {
-                    Time.timeScale = 0;
-                    paused = true;
-                    menu.gameObject.SetActive(true);
+                    Pause();
                 }
             }
         }
