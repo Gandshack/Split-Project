@@ -19,4 +19,9 @@ public class LoadGameButtonScript : MonoBehaviour
     public void ChangeScene(){
         SceneManager.LoadScene(scene);
     }
+
+    public void ChangeQuit()
+    {
+        Application.Quit();
+    }
 }

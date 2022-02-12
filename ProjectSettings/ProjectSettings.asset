@@ -636,7 +636,7 @@ PlayerSettings:
   cloudServicesEnabled:
     Analytics: 0
     Build: 0
-    Collab: 1
+    Collab: 0
     Game Performance: 0
     Purchasing: 0
     UDP: 0
@@ -654,11 +654,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 82e9743e-3b93-4d44-b898-157f7cfacd8d
+  cloudProjectId: 2b4b2579-e1ae-415b-b6cc-e87d4cd708f3
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Split Project
-  organizationId: gandshack89mc
+  organizationId: kevorama0205
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0
