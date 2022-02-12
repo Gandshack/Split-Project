@@ -57,11 +57,31 @@ public class Enemy : MonoBehaviour
 
     public bool PlayerBelow()
     {
-        Rigidbody2D rbP = Player.gameObject.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbP = Player.GetComponent<Rigidbody2D>();
         Rigidbody2D rbE = gameObject.GetComponent<Rigidbody2D>();
         Vector2 posP = rbP.position;
         Vector2 posE = rbE.position;
         return Math.Abs(posP.x - posE.x) < 0.5 && posP.y < posE.y - 2;
+    }
+
+    public int PlayerDir(float leeway)
+    {
+        Rigidbody2D rbP = Player.GetComponent<Rigidbody2D>();
+        Rigidbody2D rbE = gameObject.GetComponent<Rigidbody2D>();
+        Vector2 posP = rbP.position;
+        Vector2 posE = rbE.position;
+        if (rbE.position.x < rbP.position.x - leeway)
+        {
+            return -1;
+        }
+        else if (rbE.position.x > rbP.position.x + leeway)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public Animator Animator()
