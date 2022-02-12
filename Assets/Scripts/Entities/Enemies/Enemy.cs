@@ -42,6 +42,12 @@ public class Enemy : MonoBehaviour
 
     private Animator anim;
 
+    private void Awake()
+    {
+        startPos = transform.position;
+        startingLeft = isLookingLeft;
+    }
+
     protected virtual void Start()
     {
         Player = GameObject.Find("Player");
@@ -49,10 +55,18 @@ public class Enemy : MonoBehaviour
         PlayerMovement = Player.GetComponent<PlayerMovement>();
         CTD = GetComponent<CollisionTypeDetect>();
         anim = GetComponent<Animator>();
-        startPos = transform.position;
-        startingLeft = isLookingLeft;
         flashComp = GetComponent<DamageFlash>();
         UpdateDirection(isLookingLeft);
+    }
+
+    public void ReturnToStart()
+    {
+        transform.position = startPos;
+    }
+
+    public void FullHeal()
+    {
+        hc.MaxHeal();
     }
 
     public bool PlayerBelow()
@@ -152,5 +166,10 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    public string GetUniqueName()
+    {
+        return startPos.ToString("F");
     }
 }

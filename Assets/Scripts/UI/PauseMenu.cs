@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Saving;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,19 @@ namespace Assets.Scripts
                     Pause();
                 }
             }
+            else if (Input.GetKeyDown(KeyCode.BackQuote))
+            {
+                DataService.Instance.Save();
+            }
+            else if (Input.GetKeyDown(KeyCode.Quote))
+            {
+                DataService.Instance.Load();
+            }
+            else if (Input.GetKeyDown(KeyCode.Minus))
+            {
+                DataService.Instance.ClearSave();
+            }
         }
+
     }
 }

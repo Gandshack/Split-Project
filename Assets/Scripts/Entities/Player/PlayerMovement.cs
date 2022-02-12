@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public CollisionTypeDetect CTD;
 
     private Camera playerCamera;
+
     public LayerMask enemy;
     public Transform punchOrigin;
 
@@ -184,6 +185,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         invulTime.Proceed(Time.deltaTime);
+    }
+
+    public void SetHealth(int health)
+    {
+        hc.SetHealth(health);
+        healthBar.UpdateHealth(hc.GetHealthFraction());
     }
 
     public void TakeDamage(float damage)

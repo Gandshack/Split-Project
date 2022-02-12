@@ -31,4 +31,9 @@ public class Follow : MonoBehaviour
         // regardless of initial distance.
         ThisBody.velocity = Speed * dist;
     }
+
+    void TravelInstantly()
+    {
+        ThisBody.position = BodyToFollow.position;
+    }
 }

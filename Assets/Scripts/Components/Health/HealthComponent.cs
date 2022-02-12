@@ -83,6 +83,20 @@ public class HealthComponent : MonoBehaviour, IHealthComponent
         return (float)thisHealthComponent.CurrentHealth / thisHealthComponent.MaximumHealth;
     }
 
+    public int GetHealth()
+    {
+        return thisHealthComponent.CurrentHealth;
+    }
+
+    public void SetHealth(int health)
+    {
+        thisHealthComponent.CurrentHealth = health;
+    }
+
+    public void MaxHeal()
+    {
+        thisHealthComponent.CurrentHealth = thisHealthComponent.MaximumHealth;
+    }
 
     /// <summary>
     /// This function handles when the entity takes damage.
