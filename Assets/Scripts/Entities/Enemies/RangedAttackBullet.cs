@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedEnemyBullet : MonoBehaviour
+public class RangedAttackBullet : MonoBehaviour
 {
     private Countdown lifetime;
 

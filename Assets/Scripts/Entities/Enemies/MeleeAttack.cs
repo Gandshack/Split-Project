@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemy : MonoBehaviour
+public class MeleeAttack : MonoBehaviour
 {
     /// <summary>
     /// A reference to the player movement.
