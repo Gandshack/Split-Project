@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
         Vector2 mousePos = Input.mousePosition;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, punchOrigin.forward, 2, enemy);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, punchOrigin.forward, 2.5f, enemy);
         if (hit)
         {
             punchSound.Play();

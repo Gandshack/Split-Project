@@ -1528,6 +1528,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5459933003940139600, guid: 256ae3516e903bc499c88ed1abcc21a0, type: 3}
+      propertyPath: m_Size.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459933003940139600, guid: 256ae3516e903bc499c88ed1abcc21a0, type: 3}
+      propertyPath: m_Size.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459933003940139604, guid: 256ae3516e903bc499c88ed1abcc21a0, type: 3}
+      propertyPath: orthographic size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5459933004322046858, guid: 256ae3516e903bc499c88ed1abcc21a0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
