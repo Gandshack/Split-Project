@@ -75,7 +75,9 @@ public class Enemy : MonoBehaviour
         Rigidbody2D rbE = gameObject.GetComponent<Rigidbody2D>();
         Vector2 posP = rbP.position;
         Vector2 posE = rbE.position;
-        return Math.Abs(posP.x - posE.x) < 0.5 && posP.y < posE.y - 2;
+        RaycastHit2D rc = Physics2D.Raycast(posE, Vector2.down, 30f, 1 << 10);
+        RaycastHit2D rcg = Physics2D.Raycast(posE, Vector2.down, 30f, CTD.groundLayer);
+        return rc && (!rcg || (rc.distance < rcg.distance));
     }
     public int Dir(Vector2 pos, float leeway)
     {
