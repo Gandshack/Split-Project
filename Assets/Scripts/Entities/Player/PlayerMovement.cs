@@ -122,34 +122,13 @@ public class PlayerMovement : MonoBehaviour
         // Player controlled horizontal force
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            Vector2 velocity = new Vector2(0, 0);
-            if (CTD.SlopeLeft)
-            {
-                velocity = new Vector2(-speed * Time.deltaTime, 0);
-                velocity.y = -velocity.x;
-                velocity.x = 0;
-            }
-            else if (!CTD.IsLefted)
-            {
-                velocity = new Vector2(-speed * Time.deltaTime, 0);
-            }
-            playerBody.AddForce(1000 * velocity);
+            Vector2 velocity = CTD.SwapVelocitySlopeLeft();
+            playerBody.AddForce(1000 * speed * Time.deltaTime * velocity);
         }
         else if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            Vector2 velocity = new Vector2(0, 0);
-            if (CTD.SlopeRight)
-            {
-                velocity = new Vector2(speed * Time.deltaTime, 0);
-                velocity.y = velocity.x;
-                velocity.x = 0;
-            }
-            else if (!CTD.IsRighted)
-            {
-                velocity = new Vector2(speed * Time.deltaTime, 0);
-            }
-            playerBody.AddForce(1000 * velocity);
-
+            Vector2 velocity = CTD.SwapVelocitySlopeRight();
+            playerBody.AddForce(1000 * speed * Time.deltaTime * velocity);
         }
 
         // Auto-jump up slopes
