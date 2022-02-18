@@ -87,6 +87,32 @@ namespace Assets.Scripts
             ct = new CollisionType(groundLayer);
         }
 
+        public Vector2 SwapVelocitySlopeLeft()
+        {
+            if (SlopeLeft)
+            {
+                return new Vector2(0, 1);
+            }
+            else if (!IsLefted)
+            {
+                return new Vector2(-1, 0);
+            }
+            return new Vector2(0, 0);
+        }
+
+        public Vector2 SwapVelocitySlopeRight()
+        {
+            if (SlopeRight)
+            {
+                return new Vector2(0, 1);
+            }
+            else if (!IsRighted)
+            {
+                return new Vector2(1, 0);
+            }
+            return new Vector2(0, 0);
+        }
+
         void FixedUpdate()
         {
             ct.NoCollider();

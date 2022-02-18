@@ -84,6 +84,17 @@ namespace Assets.Scripts
             {
                 rising = false;
             }
+            //negates x-velocity on slope, to allow free rising
+            if (rbE.velocity.x < 0)
+            {
+                Vector2 velocity = CTD.SwapVelocitySlopeLeft();
+                rbE.velocity = new Vector2(-velocity.x * rbE.velocity.x, rbE.velocity.y);
+            }
+            if (rbE.velocity.x > 0)
+            {
+                Vector2 velocity = CTD.SwapVelocitySlopeRight();
+                rbE.velocity = new Vector2(velocity.x * rbE.velocity.x, rbE.velocity.y);
+            }
         }
 
         private void Dive()
