@@ -94,15 +94,17 @@ namespace Assets.Scripts
         {
             Vector2 pos = bounds.center - bounds.extents;
             RaycastHit2D hit = Physics2D.Raycast(pos, new Vector2(-1, 0), 0.05f, groundLayer);
-            RaycastHit2D hit2 = Physics2D.Raycast(pos + new Vector2(0, bounds.extents.y), new Vector2(-1, 0), 0.05f, groundLayer);
-            return hit && !hit2;
+            RaycastHit2D hit2 = Physics2D.Raycast(pos + new Vector2(0, 0.1f), new Vector2(-1, 0), 0.05f, groundLayer);
+            //RaycastHit2D hit3 = Physics2D.Raycast(pos + new Vector2(0, 0.1f), new Vector2(-1, 0), 0.1f, groundLayer);
+            return hit && !hit2;// && hit3;
         }
         public bool IsSlopeRight(Bounds bounds)
         {
             Vector2 pos = bounds.center + bounds.extents;
             RaycastHit2D hit = Physics2D.Raycast(pos - new Vector2(0, 2 * bounds.extents.y), new Vector2(1, 0), 0.05f, groundLayer);
-            RaycastHit2D hit2 = Physics2D.Raycast(pos - new Vector2(0, bounds.extents.y), new Vector2(1, 0), 0.05f, groundLayer);
-            return hit && !hit2;
+            RaycastHit2D hit2 = Physics2D.Raycast(pos - new Vector2(0, 0.1f), new Vector2(1, 0), 0.05f, groundLayer);
+            //RaycastHit2D hit3 = Physics2D.Raycast(pos - new Vector2(0, 0.1f), new Vector2(1, 0), 0.1f, groundLayer);
+            return hit && !hit2;// && hit3;
         }
 
         public bool IsEdgeLeft(Bounds bounds)

@@ -24,10 +24,7 @@ namespace Assets.Scripts
                     PlayerBody.AddForce(new Vector2(-1500, 0));
                 }
                 PlayerMovement pm = GetComponentInParent<PlayerMovement>();
-                if (!pm.invulTime.IsRunning())
-                {
-                    pm.TakeDamage(20);
-                }
+                pm.TakeDamage(20);
             }
         }
 
