@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,6 +62,8 @@ public class DataService : MonoBehaviour
 	/// </summary>
 	public SaveData SaveData { get; private set; }
 
+	public string SceneToLoad = null;
+
 	/// <summary>
 	/// Ensure that the player preferences are applied to the new scene.
 	/// </summary>
@@ -73,6 +76,17 @@ public class DataService : MonoBehaviour
 			Load();
 			Save();
 		}
+	}
+
+	public void LoadSceneWithLoadingScreen(string scene)
+	{
+		// The Application loads the Scene in the background as the current Scene runs.
+		// This is particularly good for creating loading screens.
+		// You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
+		// a sceneBuildIndex of 1 as shown in Build Settings.
+		Debug.Log("a");
+		SceneToLoad = scene;
+		SceneManager.LoadScene("Loading");
 	}
 
 	public void Save()

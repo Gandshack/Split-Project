@@ -37,7 +37,8 @@ namespace Assets.Scripts
 
         public void Load()
         {
-            SceneManager.LoadScene("Test level");
+            Resume();
+            DataService.Instance.LoadSceneWithLoadingScreen("Test level");
         }
 
         public void Save()
@@ -64,15 +65,15 @@ namespace Assets.Scripts
             }
             else if (Input.GetKeyDown(KeyCode.BackQuote))
             {
-                DataService.Instance.Save();
+                Save();
             }
             else if (Input.GetKeyDown(KeyCode.Quote))
             {
-                DataService.Instance.Load();
+                Load();
             }
             else if (Input.GetKeyDown(KeyCode.Minus))
             {
-                DataService.Instance.ClearSave();
+                ClearSave();
             }
         }
 

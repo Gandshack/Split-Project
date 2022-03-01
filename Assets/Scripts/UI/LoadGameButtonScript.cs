@@ -16,8 +16,9 @@ public class LoadGameButtonScript : MonoBehaviour
     {
         
     }
+
     public void ChangeScene(){
-        SceneManager.LoadScene(scene);
+        DataService.Instance.LoadSceneWithLoadingScreen(scene);
     }
 
     public void ChangeQuit()
