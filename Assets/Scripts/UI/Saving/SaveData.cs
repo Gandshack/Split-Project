@@ -15,6 +15,7 @@ public class SaveData
 
 	// We initialize all of the stats to be default values.
 	public List<string> enemiesAlive;
+	public List<string> checkpointsAlive;
 	public Vector2 playerPos;
 	public int playerHealth;
 

@@ -12,10 +12,22 @@ namespace Assets.Scripts.Entities
         public bool activated;
         public Transform basePos;
 
+        public void Start()
+        {
+            activated = false;
+            transform.Find("ActivatedGlow").gameObject.SetActive(false);
+        }
+
         public void Activate()
         {
             activated = true;
+            transform.Find("ActivatedGlow").gameObject.SetActive(true);
             DataService.Instance.SaveAtGroundPos(basePos.position);
+        }
+
+        public string GetUniqueName()
+        {
+            return basePos.position.ToString("F");
         }
     }
 }

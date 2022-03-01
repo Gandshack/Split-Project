@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Entities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,7 +85,6 @@ public class DataService : MonoBehaviour
 		// This is particularly good for creating loading screens.
 		// You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
 		// a sceneBuildIndex of 1 as shown in Build Settings.
-		Debug.Log("a");
 		SceneToLoad = scene;
 		SceneManager.LoadScene("Loading");
 	}
@@ -92,6 +92,7 @@ public class DataService : MonoBehaviour
 	public void Save()
     {
 		SaveData.enemiesAlive = GetLivingEnemies().ToList();
+		SaveData.checkpointsAlive = GetActivatedCheckpoints().ToList();
 		GameObject Player = GameObject.Find("Player");
 		SaveData.playerPos = Player.transform.position;
 		SaveData.playerHealth = Player.GetComponent<PlayerMovement>().hc.GetHealth();
@@ -101,6 +102,7 @@ public class DataService : MonoBehaviour
 	public void SaveAtGroundPos(Vector2 pos)
 	{
 		SaveData.enemiesAlive = GetLivingEnemies().ToList();
+		SaveData.checkpointsAlive = GetActivatedCheckpoints().ToList();
 		GameObject Player = GameObject.Find("Player");
 		SaveData.playerPos = GetPlayerPosByBottom(pos);
 		SaveData.playerHealth = Player.GetComponent<PlayerMovement>().hc.GetHealth();
@@ -124,6 +126,8 @@ public class DataService : MonoBehaviour
         }
 		SaveData = tempSaveData;
 		HashSet<string> enemies = new HashSet<string>(SaveData.enemiesAlive);
+		HashSet<string> checkpoints = new HashSet<string>(SaveData.checkpointsAlive);
+
 		Transform Player = GameObject.Find("Player").transform;
 		Player.position = new Vector3(SaveData.playerPos.x, SaveData.playerPos.y, Player.position.z);
 		Player.GetComponent<PlayerMovement>().SetHealth(SaveData.playerHealth);
@@ -140,6 +144,19 @@ public class DataService : MonoBehaviour
 					t.gameObject.SetActive(false);
 				}
 				e.ReturnToStart();
+			}
+		}
+
+		foreach (Transform t in GameObject.Find("Checkpoints").transform)
+		{
+			if (t.gameObject.activeInHierarchy)
+			{
+				Checkpoint c = t.GetComponent<Checkpoint>();
+				string name = c.GetUniqueName();
+				if (checkpoints.Contains(name))
+				{
+					c.Activate();
+				}
 			}
 		}
 	}
@@ -161,5 +178,22 @@ public class DataService : MonoBehaviour
 		}
 		return enemies;
     }
+
+	public HashSet<string> GetActivatedCheckpoints()
+	{
+		HashSet<string> checkpoints = new HashSet<string>();
+		foreach (Transform t in GameObject.Find("Checkpoints").transform)
+		{
+			if (t.gameObject.activeInHierarchy)
+			{
+				Checkpoint c = t.GetComponent<Checkpoint>();
+				if (c.activated)
+                {
+					checkpoints.Add(c.GetUniqueName());
+				}
+			}
+		}
+		return checkpoints;
+	}
 }
 
