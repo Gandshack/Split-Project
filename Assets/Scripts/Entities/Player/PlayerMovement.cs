@@ -201,7 +201,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
-        SceneManager.LoadScene("MainMenu");
-        Debug.Log("player ded");
+        DataService.Instance.LoadSceneWithLoadingScreen("Test level");
     }
 }
