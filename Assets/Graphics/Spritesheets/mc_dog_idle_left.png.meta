@@ -1,46 +1,46 @@
 fileFormatVersion: 2
-guid: e585b7c0306545e40b6c9efe347a4001
+guid: b333fc5d8b8f475419ece1d84ab69fe6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4436612627862852293
-    second: mc_dog_stopped_0
+      213: 1603448398433389486
+    second: mc_dog_idle_left_0
   - first:
-      213: 1184543255300024557
-    second: mc_dog_stopped_1
+      213: 2804219002728652908
+    second: mc_dog_idle_left_1
   - first:
-      213: -8434234100224027037
-    second: mc_dog_stopped_2
+      213: -1714556633373760071
+    second: mc_dog_idle_left_2
   - first:
-      213: 7764432793690111041
-    second: mc_dog_stopped_3
+      213: 4190320899328706508
+    second: mc_dog_idle_left_3
   - first:
-      213: -2872308211449852428
-    second: mc_dog_stopped_4
+      213: 8378906223269215488
+    second: mc_dog_idle_left_4
   - first:
-      213: 4753186825698702173
-    second: mc_dog_stopped_5
+      213: -3391222008076348637
+    second: mc_dog_idle_left_5
   - first:
-      213: 3074155828700577595
-    second: mc_dog_stopped_6
+      213: -3221226341211610536
+    second: mc_dog_idle_left_6
   - first:
-      213: -3658129551698154234
-    second: mc_dog_stopped_7
+      213: -5321678250695612010
+    second: mc_dog_idle_left_7
   - first:
-      213: 1113585321364317447
-    second: mc_dog_stopped_8
+      213: -1080758406931648707
+    second: mc_dog_idle_left_8
   - first:
-      213: -6012010793427094119
-    second: mc_dog_stopped_9
+      213: -4907568939753195325
+    second: mc_dog_idle_left_9
   - first:
-      213: -4058759223526906729
-    second: mc_dog_stopped_10
+      213: -8200141613781698524
+    second: mc_dog_idle_left_10
   - first:
-      213: -6090884831342026598
-    second: mc_dog_stopped_11
+      213: -3776183684115002055
+    second: mc_dog_idle_left_11
   - first:
-      213: -2590344286156664479
-    second: mc_dog_stopped_12
+      213: 6584875888445159120
+    second: mc_dog_idle_left_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -85,7 +85,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 82
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -130,13 +130,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mc_dog_stopped_0
+      name: mc_dog_idle_left_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 387.75
-        width: 129.25
-        height: 129.25
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,20 +144,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c217c9cda3029d30800000000000000
-      internalID: 4436612627862852293
+      spriteID: eab8a4ca2d7904610800000000000000
+      internalID: 1603448398433389486
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_1
+      name: mc_dog_idle_left_1
       rect:
         serializedVersion: 2
-        x: 129
-        y: 387.75
-        width: 129.25
-        height: 129.25
+        x: 250
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de82e3190d7507010800000000000000
-      internalID: 1184543255300024557
+      spriteID: c60aa0a53569ae620800000000000000
+      internalID: 2804219002728652908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_2
+      name: mc_dog_idle_left_2
       rect:
         serializedVersion: 2
-        x: 258
-        y: 387.75
-        width: 129.25
-        height: 129.25
+        x: 500
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,20 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36619a7b5c493fa80800000000000000
-      internalID: -8434234100224027037
+      spriteID: 9b5a77873dba438e0800000000000000
+      internalID: -1714556633373760071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_3
+      name: mc_dog_idle_left_3
       rect:
         serializedVersion: 2
-        x: 387
-        y: 387.75
-        width: 129.25
-        height: 129.25
+        x: 750
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,20 +207,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14cfa46fc7ec0cb60800000000000000
-      internalID: 7764432793690111041
+      spriteID: cc7026b18a2072a30800000000000000
+      internalID: 4190320899328706508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_4
+      name: mc_dog_idle_left_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 258.75
-        width: 129.25
-        height: 129.25
+        x: 1000
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,20 +228,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fd081b56e28328d0800000000000000
-      internalID: -2872308211449852428
+      spriteID: 00d754411dad74470800000000000000
+      internalID: 8378906223269215488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_5
+      name: mc_dog_idle_left_5
       rect:
         serializedVersion: 2
-        x: 129
-        y: 258.75
-        width: 129.25
-        height: 129.25
+        x: 1250
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,20 +249,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5376d80c36b6f140800000000000000
-      internalID: 4753186825698702173
+      spriteID: 3235f161d85ffe0d0800000000000000
+      internalID: -3391222008076348637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_6
+      name: mc_dog_idle_left_6
       rect:
         serializedVersion: 2
-        x: 258
-        y: 258.75
-        width: 129.25
-        height: 129.25
+        x: 1500
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -270,20 +270,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3ff4e9407899aa20800000000000000
-      internalID: 3074155828700577595
+      spriteID: 85263fe95b7eb43d0800000000000000
+      internalID: -3221226341211610536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_7
+      name: mc_dog_idle_left_7
       rect:
         serializedVersion: 2
-        x: 387
-        y: 258.75
-        width: 129.25
-        height: 129.25
+        x: 1750
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -291,20 +291,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60d2ca8ed86bb3dc0800000000000000
-      internalID: -3658129551698154234
+      spriteID: 699ad5293d99526b0800000000000000
+      internalID: -5321678250695612010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_8
+      name: mc_dog_idle_left_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 129.75
-        width: 129.25
-        height: 129.25
+        x: 2000
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,20 +312,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 705620323ff347f00800000000000000
-      internalID: 1113585321364317447
+      spriteID: d3f62da74ff5001f0800000000000000
+      internalID: -1080758406931648707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_9
+      name: mc_dog_idle_left_9
       rect:
         serializedVersion: 2
-        x: 129
-        y: 129.75
-        width: 129.25
-        height: 129.25
+        x: 2250
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -333,20 +333,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 995b6ff490c019ca0800000000000000
-      internalID: -6012010793427094119
+      spriteID: 3c8354bfc00d4ebb0800000000000000
+      internalID: -4907568939753195325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_10
+      name: mc_dog_idle_left_10
       rect:
         serializedVersion: 2
-        x: 258
-        y: 129.75
-        width: 129.25
-        height: 129.25
+        x: 2500
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -354,20 +354,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 794a6dc8df36ca7c0800000000000000
-      internalID: -4058759223526906729
+      spriteID: 428b4a206ae333e80800000000000000
+      internalID: -8200141613781698524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_11
+      name: mc_dog_idle_left_11
       rect:
         serializedVersion: 2
-        x: 387
-        y: 129.75
-        width: 129.25
-        height: 129.25
+        x: 2750
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -375,20 +375,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a902b0c4484d87ba0800000000000000
-      internalID: -6090884831342026598
+      spriteID: 93d03b542fc489bc0800000000000000
+      internalID: -3776183684115002055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_stopped_12
+      name: mc_dog_idle_left_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0.75
-        width: 129.25
-        height: 129.25
+        x: 3000
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -396,8 +396,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1615ba1989f3d0cd0800000000000000
-      internalID: -2590344286156664479
+      spriteID: 0d6fecc7bbd226b50800000000000000
+      internalID: 6584875888445159120
       vertices: []
       indices: 
       edges: []

@@ -1579,6 +1579,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5459933005235560459, guid: 256ae3516e903bc499c88ed1abcc21a0, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459933005235560459, guid: 256ae3516e903bc499c88ed1abcc21a0, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5024414
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459933005235560459, guid: 256ae3516e903bc499c88ed1abcc21a0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 9204002778802395978, guid: 654f3df0434cc0a408c68efbdf03f4b4, type: 3}
+    - target: {fileID: 5459933005235560459, guid: 256ae3516e903bc499c88ed1abcc21a0, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7466493965451754295, guid: 256ae3516e903bc499c88ed1abcc21a0, type: 3}
       propertyPath: m_Name
       value: Player With UI

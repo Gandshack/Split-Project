@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource punchSound;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
         sanityHeal = new Countdown(0.1f);
         invulTime = new Countdown(0.5f);
+
+        anim = GetComponent<Animator>();
     }
 
     bool Punch()
@@ -124,11 +128,13 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 velocity = CTD.SwapVelocitySlopeLeft();
             playerBody.AddForce(1000 * speed * Time.deltaTime * velocity);
+            anim.SetBool("facingLeft", true);
         }
         else if (Input.GetAxisRaw("Horizontal") > 0)
         {
             Vector2 velocity = CTD.SwapVelocitySlopeRight();
             playerBody.AddForce(1000 * speed * Time.deltaTime * velocity);
+            anim.SetBool("facingLeft", false);
         }
 
         // Auto-jump up slopes
