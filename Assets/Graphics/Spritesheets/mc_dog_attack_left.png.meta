@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 723cc3090799375459e128b381cba85c
+guid: a1c9fb9f54a8e9a4096b2d0265761b1d
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -113,9 +113,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 344.6667
-        width: 172
-        height: 172.33333
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,10 +133,10 @@ TextureImporter:
       name: mc_dog_attack_left_1
       rect:
         serializedVersion: 2
-        x: 172
-        y: 344.6667
-        width: 172
-        height: 172.33333
+        x: 250
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,10 +154,10 @@ TextureImporter:
       name: mc_dog_attack_left_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 172.66667
-        width: 172
-        height: 172.33333
+        x: 500
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +175,10 @@ TextureImporter:
       name: mc_dog_attack_left_3
       rect:
         serializedVersion: 2
-        x: 172
-        y: 172.66667
-        width: 172
-        height: 172.33333
+        x: 750
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +196,10 @@ TextureImporter:
       name: mc_dog_attack_left_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0.66667175
-        width: 172
-        height: 172.33333
+        x: 1000
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,10 +217,10 @@ TextureImporter:
       name: mc_dog_attack_left_5
       rect:
         serializedVersion: 2
-        x: 172
-        y: 0.66667175
-        width: 172
-        height: 172.33333
+        x: 1250
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -105,6 +105,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void AttackEndsEvent()
+    {
+        Debug.Log("AEE");
+        anim.SetBool("isAttacking", false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("AAAAAA");
+            anim.SetBool("isAttacking", true);
+            punchAction.Trigger();
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -115,13 +131,9 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpAction.Trigger();
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            punchAction.Trigger();
-        }
 
-        punchAction.Proceed(Time.deltaTime);
         jumpAction.Proceed(Time.deltaTime);
+        punchAction.Proceed(Time.deltaTime);
 
         // Player controlled horizontal force
         if (Input.GetAxisRaw("Horizontal") < 0)

@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: cbcbf1c51ac85ec43abc34ca3de96856
+guid: 2ff17ddf8b31fd549b8ffd256d2b1338
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3851545159123681651
-    second: mc_dog_attack_right_0
+      213: 3127563389262378773
+    second: mc_dog_attack_right 1_0
   - first:
-      213: -184063047750504711
-    second: mc_dog_attack_right_1
+      213: 1255811531342550785
+    second: mc_dog_attack_right 1_1
   - first:
-      213: -6589415752627047799
-    second: mc_dog_attack_right_2
+      213: 780652372695193176
+    second: mc_dog_attack_right 1_2
   - first:
-      213: 7598478488436543602
-    second: mc_dog_attack_right_3
+      213: 8798642579434586002
+    second: mc_dog_attack_right 1_3
   - first:
-      213: 8120823964621654360
-    second: mc_dog_attack_right_4
+      213: -8996461900017483704
+    second: mc_dog_attack_right 1_4
   - first:
-      213: 579958929631119244
-    second: mc_dog_attack_right_5
+      213: 749339611067810906
+    second: mc_dog_attack_right 1_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mc_dog_attack_right_0
+      name: mc_dog_attack_right 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 344.6667
-        width: 172
-        height: 172.33333
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,20 +123,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8ebe0a85109c8ac0800000000000000
-      internalID: -3851545159123681651
+      spriteID: 517308df456576b20800000000000000
+      internalID: 3127563389262378773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_attack_right_1
+      name: mc_dog_attack_right 1_1
       rect:
         serializedVersion: 2
-        x: 172
-        y: 344.6667
-        width: 172
-        height: 172.33333
+        x: 250
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,20 +144,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fe2e8e12a3127df0800000000000000
-      internalID: -184063047750504711
+      spriteID: 10713862fe98d6110800000000000000
+      internalID: 1255811531342550785
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_attack_right_2
+      name: mc_dog_attack_right 1_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 172.66667
-        width: 172
-        height: 172.33333
+        x: 500
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9823d430941bd84a0800000000000000
-      internalID: -6589415752627047799
+      spriteID: 8561097623f65da00800000000000000
+      internalID: 780652372695193176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_attack_right_3
+      name: mc_dog_attack_right 1_3
       rect:
         serializedVersion: 2
-        x: 172
-        y: 172.66667
-        width: 172
-        height: 172.33333
+        x: 750
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,20 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27015b04de7337960800000000000000
-      internalID: 7598478488436543602
+      spriteID: 29f33dc0fce0b1a70800000000000000
+      internalID: 8798642579434586002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_attack_right_4
+      name: mc_dog_attack_right 1_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0.66667175
-        width: 172
-        height: 172.33333
+        x: 1000
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,20 +207,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 859c0ceae56f2b070800000000000000
-      internalID: 8120823964621654360
+      spriteID: 8404f163195262380800000000000000
+      internalID: -8996461900017483704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_attack_right_5
+      name: mc_dog_attack_right 1_5
       rect:
         serializedVersion: 2
-        x: 172
-        y: 0.66667175
-        width: 172
-        height: 172.33333
+        x: 1250
+        y: 0
+        width: 250
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,8 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c878af0e29d6c0800800000000000000
-      internalID: 579958929631119244
+      spriteID: a5483d5f760366a00800000000000000
+      internalID: 749339611067810906
       vertices: []
       indices: 
       edges: []
