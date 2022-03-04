@@ -64,15 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool Punch()
     {
-        punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
-        Vector2 mousePos = Input.mousePosition;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, punchOrigin.forward, 2.5f, enemy);
-        if (hit)
-        {
-            punchSound.Play();
-            Debug.Log(hit.transform.name);
-            hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(20);
-        }
+        punchSound.Play();
         return true;
     }
 
@@ -107,15 +99,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void AttackEndsEvent()
     {
-        Debug.Log("AEE");
         anim.SetBool("isAttacking", false);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.X))
         {
-            Debug.Log("AAAAAA");
             anim.SetBool("isAttacking", true);
             punchAction.Trigger();
         }
@@ -124,9 +114,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        punchOrigin.LookAt(playerCamera.ScreenToWorldPoint(Input.mousePosition));
-        // Determine whether the player is touching something
-
         if ((Input.GetAxisRaw("Vertical") > 0) ^ Input.GetKey(KeyCode.Space))
         {
             jumpAction.Trigger();
