@@ -21,7 +21,7 @@ namespace Assets.Scripts.Entities.Player
                     return;
                 }
                 e.TakeDamage(20);
-                Rigidbody2D EnemyBody = collider.gameObject.GetComponent<Rigidbody2D>();
+                Rigidbody2D EnemyBody = e.GetComponent<Rigidbody2D>();
                 if (onLeft)
                 {
                     EnemyBody.AddForce(new Vector2(-1500, 0));
