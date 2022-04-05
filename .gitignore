@@ -36,6 +36,8 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+Recordings/**
+
 #Logs
 ApiUpdaterCheck.txt
 Logs/**
