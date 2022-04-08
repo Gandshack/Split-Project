@@ -12,12 +12,9 @@ namespace Assets.Scripts
         public bool diving = false;
         public bool rising = false;
 
-        public AudioSource diveSound;
-
         protected override void Start()
         {
             base.Start();
-            diveSound = GetComponent<AudioSource>();
         }
 
         public override void Move()
@@ -100,7 +97,7 @@ namespace Assets.Scripts
         private void Dive()
         {
             diving = true;
-            diveSound.Play();
+            PlayAudio(1);
         }
     }
 }

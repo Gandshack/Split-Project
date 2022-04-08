@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour
 
     private Animator anim;
 
+    private AudioSource[] allMyAudioSources;
+
     private void Awake()
     {
         startPos = transform.position;
@@ -51,12 +53,18 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         Player = GameObject.Find("Player");
+        allMyAudioSources = GetComponents<AudioSource>();
         hc = GetComponent<HealthComponent>();
         PlayerMovement = Player.GetComponent<PlayerMovement>();
         CTD = GetComponent<CollisionTypeDetect>();
         anim = GetComponent<Animator>();
         flashComp = GetComponent<DamageFlash>();
         UpdateDirection(isLookingLeft);
+    }
+
+    public void PlayAudio(int index)
+    {
+        allMyAudioSources[index].Play();
     }
 
     public void ReturnToStart()
@@ -159,6 +167,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        PlayAudio(0);
         flashComp.Do();
         hc.OnDamage((int)damage);
         if(hc.IsDead()){
