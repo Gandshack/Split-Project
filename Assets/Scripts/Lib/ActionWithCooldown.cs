@@ -42,16 +42,21 @@ namespace Assets.Scripts
             inProgress.Proceed(deltaTime);
         }
 
-        public void Trigger()
+        public bool Trigger()
         {
-            if (!inProgress.IsRunning() && Attempt())
+            if (!inProgress.IsRunning())
             {
-                inProgress.Start();
+                if (Attempt())
+                {
+                    inProgress.Start();
+                    return true;
+                }
+                else
+                {
+                    triggerKept.Start();
+                }
             }
-            else
-            {
-                triggerKept.Start();
-            }
+            return false;
         }
     }
 }

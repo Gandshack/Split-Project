@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         jumpAction = new ActionWithCooldown(0.1f, 0.05f, this.Jump);
-        punchAction = new ActionWithCooldown(0.0f, 0.5f, this.Punch);
+        punchAction = new ActionWithCooldown(0.0f, 1.0f, this.Punch);
 
         playerBody = GetComponent<Rigidbody2D>();
         CTD = GetComponent<CollisionTypeDetect>();
@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool Punch()
     {
+        Debug.Log("III\n");
         punchSound.Play();
         return true;
     }
@@ -102,25 +103,24 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isAttacking", false);
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.X))
-        {
-            anim.SetBool("isAttacking", true);
-            punchAction.Trigger();
-        }
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if ((Input.GetAxisRaw("Vertical") > 0) ^ Input.GetKey(KeyCode.Space))
         {
             jumpAction.Trigger();
         }
 
+        if (Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.X))
+        {
+            anim.SetBool("isAttacking", true);
+        }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         jumpAction.Proceed(Time.deltaTime);
-        punchAction.Proceed(Time.deltaTime);
+        //punchAction.Proceed(Time.deltaTime);
 
         // Player controlled horizontal force
         if (Input.GetAxisRaw("Horizontal") < 0)
