@@ -322,7 +322,6 @@ MonoBehaviour:
   lookingRange: 20
   diving: 0
   rising: 0
-  diveSound: {fileID: 0}
 --- !u!61 &2331110435346771827
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -361,7 +360,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c84f02445cec1784da7bf45cfeb8759a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

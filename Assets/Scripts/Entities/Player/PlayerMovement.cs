@@ -128,12 +128,18 @@ public class PlayerMovement : MonoBehaviour
             Vector2 velocity = CTD.SwapVelocitySlopeLeft();
             playerBody.AddForce(1000 * speed * Time.deltaTime * velocity);
             anim.SetBool("facingLeft", true);
+            anim.SetBool("isMoving", true);
         }
         else if (Input.GetAxisRaw("Horizontal") > 0)
         {
             Vector2 velocity = CTD.SwapVelocitySlopeRight();
             playerBody.AddForce(1000 * speed * Time.deltaTime * velocity);
             anim.SetBool("facingLeft", false);
+            anim.SetBool("isMoving", true);
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
         }
 
         // Auto-jump up slopes

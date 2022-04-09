@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: a2b09c7a00da6984ca255f3fe2c72ab7
+guid: 3007bc8580f4fdb43bb0a7cb49cf82d3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1647510686212082398
-    second: mc_dog_left_0
+      213: -1226392985503299947
+    second: mc_dog_attack_move_right_0
   - first:
-      213: 1417396809781589847
-    second: mc_dog_left_1
+      213: 3669663546098258124
+    second: mc_dog_attack_move_right_1
   - first:
-      213: 1016622701830155749
-    second: mc_dog_left_2
+      213: -6901087601492244420
+    second: mc_dog_attack_move_right_2
   - first:
-      213: -4176166622770306925
-    second: mc_dog_left_3
+      213: -8446792924568586597
+    second: mc_dog_attack_move_right_3
   - first:
-      213: 6889224281122208087
-    second: mc_dog_left_4
+      213: 3075317313507010107
+    second: mc_dog_attack_move_right_4
   - first:
-      213: 2782518123866018499
-    second: mc_dog_left_5
+      213: -2886310848976573228
+    second: mc_dog_attack_move_right_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,91 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mc_dog_left_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 500
-        width: 250
-        height: 250
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2253ba082cdd229e0800000000000000
-      internalID: -1647510686212082398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mc_dog_left_1
-      rect:
-        serializedVersion: 2
-        x: 250
-        y: 500
-        width: 250
-        height: 250
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 757bdc883ea9ba310800000000000000
-      internalID: 1417396809781589847
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mc_dog_left_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 250
-        width: 250
-        height: 250
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ed2f2506f4cb1e00800000000000000
-      internalID: 1016622701830155749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mc_dog_left_3
-      rect:
-        serializedVersion: 2
-        x: 250
-        y: 250
-        width: 250
-        height: 250
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 390eee635964b06c0800000000000000
-      internalID: -4176166622770306925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mc_dog_left_4
+      name: mc_dog_attack_move_right_0
       rect:
         serializedVersion: 2
         x: 0
@@ -207,14 +123,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 759f846abf07b9f50800000000000000
-      internalID: 6889224281122208087
+      spriteID: 5968b00d31afafee0800000000000000
+      internalID: -1226392985503299947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mc_dog_left_5
+      name: mc_dog_attack_move_right_1
       rect:
         serializedVersion: 2
         x: 250
@@ -228,8 +144,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c2de12cd7d7d9620800000000000000
-      internalID: 2782518123866018499
+      spriteID: cc0136e6d834de230800000000000000
+      internalID: 3669663546098258124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mc_dog_attack_move_right_2
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 250
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c38c335d3696a30a0800000000000000
+      internalID: -6901087601492244420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mc_dog_attack_move_right_3
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 0
+        width: 250
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b967ecf8696f6ca80800000000000000
+      internalID: -8446792924568586597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mc_dog_attack_move_right_4
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 250
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b36a13b8dc8bdaa20800000000000000
+      internalID: 3075317313507010107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mc_dog_attack_move_right_5
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 0
+        width: 250
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dc256f3393c1f7d0800000000000000
+      internalID: -2886310848976573228
       vertices: []
       indices: 
       edges: []
