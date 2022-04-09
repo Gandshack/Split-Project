@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 5d6433312b15dc345b80b1f5295de8be
+guid: 4da5c4ca52cb52941bf10690cc4fa91c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9104692232394903968
-    second: tooth_flinger_right_0
+      213: 5731218333330844674
+    second: tooth_final_flipped_0
   - first:
-      213: 9129063388261166265
-    second: tooth_flinger_right_1
+      213: -8891153696272329450
+    second: tooth_final_flipped_1
   - first:
-      213: 1579242552224062483
-    second: tooth_flinger_right_2
+      213: -2275790494548969060
+    second: tooth_final_flipped_2
   - first:
-      213: 7762668755441922152
-    second: tooth_flinger_right_3
+      213: 3193639672778262575
+    second: tooth_final_flipped_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tooth_flinger_right_0
+      name: tooth_final_flipped_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 164
-        height: 164
+        x: 56
+        y: 205
+        width: 58
+        height: 71
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,20 +117,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a1182db85d5a5e70800000000000000
-      internalID: 9104692232394903968
+      spriteID: 20c246875b0698f40800000000000000
+      internalID: 5731218333330844674
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tooth_flinger_right_1
+      name: tooth_final_flipped_1
       rect:
         serializedVersion: 2
-        x: 164
-        y: 0
-        width: 164
-        height: 164
+        x: 204
+        y: 216
+        width: 71
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bca455a8c2f0be70800000000000000
-      internalID: 9129063388261166265
+      spriteID: 615594212d64c9480800000000000000
+      internalID: -8891153696272329450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tooth_flinger_right_2
+      name: tooth_final_flipped_2
       rect:
         serializedVersion: 2
-        x: 328
-        y: 0
-        width: 164
-        height: 164
+        x: 46
+        y: 44
+        width: 58
+        height: 71
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31c1f7bebb89ae510800000000000000
-      internalID: 1579242552224062483
+      spriteID: c99b2355a94ca60e0800000000000000
+      internalID: -2275790494548969060
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tooth_flinger_right_3
+      name: tooth_final_flipped_3
       rect:
         serializedVersion: 2
-        x: 492
-        y: 0
-        width: 164
-        height: 164
+        x: 205
+        y: 46
+        width: 71
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 860b32dca1a8abb60800000000000000
-      internalID: 7762668755441922152
+      spriteID: f280b8c9c56125c20800000000000000
+      internalID: 3193639672778262575
       vertices: []
       indices: 
       edges: []
